@@ -7,7 +7,8 @@ public interface ScopeUtils {
 	String SCOPE_SUFFIX = "SCOPE_SUFFIX";
 	String SCOPE = "SCOPE";
 	String SCOPE_SUFFIX_LOCAL = "local";
-	String SCOPE_VALUE = System.getenv(SCOPE);
+	String SCOPE_VALUE = "local";
+//	String SCOPE_VALUE = System.getenv(SCOPE);
 
 	static void calculateScopeSuffix() {
 		String suffix = Optional.ofNullable(SCOPE_VALUE)
