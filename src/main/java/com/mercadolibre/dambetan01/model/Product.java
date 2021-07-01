@@ -20,6 +20,7 @@ public class Product {
     private String productName;
     private String manufacturer;
     private String composition;
+    private String category;
     private Double weight;
     private Double price;
     private String status;
