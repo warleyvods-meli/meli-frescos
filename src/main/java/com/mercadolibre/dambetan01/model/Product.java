@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name="products")
+@Table(name="product")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,5 +17,10 @@ public class Product {
 
     private String productName;
     private String category;
+
+    @ManyToOne
+    private Seller seller;
+
+
 
 }

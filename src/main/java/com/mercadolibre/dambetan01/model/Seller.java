@@ -4,6 +4,8 @@ import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
@@ -12,8 +14,10 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name="seller")
 public class Seller extends User{
 
-    @Column
-    List<String> products;
+    @OneToMany(mappedBy = "seller")
+    private List<Product> productList;
+
 }

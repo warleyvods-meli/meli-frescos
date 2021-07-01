@@ -25,6 +25,6 @@ public class CountryHouse {
     private String country;
 
     @OneToMany(mappedBy = "countryHouse")
-    private List<Account> accounts;
+    private List<Account> accountsList;
 
 }

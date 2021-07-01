@@ -10,12 +10,7 @@ import java.util.List;
 @Data
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 public class Agent extends User{
-
-    public Agent(Long id, String name, String email, String password, List <UserType> userType) {
-        super(id, name, email, password, userType);
-    }
 
     public void orderEntry(){};
 }

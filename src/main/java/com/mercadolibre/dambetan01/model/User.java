@@ -19,18 +19,11 @@ public abstract class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column
     String name;
-
-    @Column
     @Email
-    String email;
+    private String email;
+    private String password;
 
-    @Column
-    String password;
-
-    @Column
     @Enumerated(EnumType.STRING)
-    @OneToMany(fetch = FetchType.EAGER)
-    List <UserType> userType;
+    private UserType userType;
 }
