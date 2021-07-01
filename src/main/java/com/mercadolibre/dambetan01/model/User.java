@@ -30,7 +30,6 @@ public abstract class User {
     String password;
 
     @Column
-
     @Enumerated(EnumType.STRING)
     @OneToMany(fetch = FetchType.EAGER)
     List <UserType> userType;
