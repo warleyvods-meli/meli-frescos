@@ -18,16 +18,6 @@ public class Product {
     private Long id;
 
     private String productName;
-    private String manufacturer;
-    private String composition;
-    private Double weight;
-    private Double price;
-    private String status;
-    private LocalDate manufacturingDate;
-    private LocalDateTime manufacturingTime;
-    private Double minimumTemp;
-    private Double maximumTemp;
-    private LocalDate dueDate;
-
+    private String category;
 
 }
