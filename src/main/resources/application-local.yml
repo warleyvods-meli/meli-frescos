@@ -4,10 +4,10 @@
 
 spring:
   datasource:
-    host: proxysql.master.meliseginf.com:6612
-    db: dambetandb
-    username: ${LOCAL_DB_USER}
-    password: ${LOCAL_DB_PASS}
+    host: localhost:3305
+    db: database
+    username: root
+    password: root
     initialization-mode: always
 
   jpa:
