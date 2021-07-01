@@ -1,13 +1,20 @@
 package com.mercadolibre.dambetan01.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
 @Table(name="order_in")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderIn {
 
     @Id
@@ -19,9 +26,8 @@ public class OrderIn {
     @JoinColumn(name = "id_section_fk", nullable = false)
     private Section section;
 
-    //@OneToMany
-    //private List<BatchStock> batchStock;
-
+    @OneToOne
+    private BatchStock batchStock;
 
 
 }

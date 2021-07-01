@@ -21,7 +21,7 @@ public class Warehouse {
 
     @OneToMany(mappedBy = "warehouse")
     //@JoinColumn(name = "id_section_fk")
-    private List<Section> section;
+    private List<Section> sectionList;
 
 //    private List<String> batchStock;
 

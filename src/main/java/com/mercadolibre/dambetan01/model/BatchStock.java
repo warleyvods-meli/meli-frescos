@@ -1,34 +1,27 @@
 package com.mercadolibre.dambetan01.model;
 
+import jdk.jfr.Enabled;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.List;
 
+@Data
 @Entity
-@Table(name="batch_stock")
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name="batch_stock")
+@Builder
+
 public class BatchStock {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@OneToMany
-    private String productId;
-
-    private Float currentTemperature;
-    private Float minimumTemperature;
-    private Integer initialQuantity;
-    private Integer currentQuantity;
-    private LocalDate manufacturingDate;
-    private LocalDateTime manufacturingTime;
-    private LocalDate dueDate;
+    @OneToMany(mappedBy = "batchstock")
+    private List<Stock> stockList;
 }
