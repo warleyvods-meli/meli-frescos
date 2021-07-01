@@ -19,8 +19,7 @@ public class Section {
     private Long id;
     private String sectionName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_warehouse_fk", nullable = false)
+    @ManyToOne
     private Warehouse warehouse;
 
 

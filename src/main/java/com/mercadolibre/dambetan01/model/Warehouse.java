@@ -18,7 +18,11 @@ public class Warehouse {
     private Long id;
 
     private String name;
-    private String session;
+
+    @OneToMany(mappedBy = "warehouse")
+    //@JoinColumn(name = "id_section_fk")
+    private List<Section> section;
+
 //    private List<String> batchStock;
 
 }
