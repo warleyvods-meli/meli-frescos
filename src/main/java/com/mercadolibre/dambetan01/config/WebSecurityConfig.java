@@ -20,6 +20,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/ping").permitAll()
                 .antMatchers(HttpMethod.GET, "/v3/api-docs").permitAll()
                 .antMatchers(HttpMethod.GET, "/fake").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/fresh-products/inboundorder").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/teste").permitAll()
 
                 .anyRequest().authenticated();
     }

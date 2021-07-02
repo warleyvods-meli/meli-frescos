@@ -1,9 +1,7 @@
 package com.mercadolibre.dambetan01.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -27,6 +25,8 @@ public class Stock {
     private Integer initialQuantity;
     private Integer currentQuantity;
     private LocalDate manufacturingDate;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
     private LocalDateTime manufacturingTime;
     private LocalDate dueDate;
 
