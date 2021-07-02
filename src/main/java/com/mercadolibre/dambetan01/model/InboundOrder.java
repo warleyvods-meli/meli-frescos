@@ -11,11 +11,11 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name="order_in")
+@Table(name="inbound_order")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderIn {
+public class InboundOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,8 +26,8 @@ public class OrderIn {
     @JoinColumn(name = "id_section_fk", nullable = false)
     private Section section;
 
-    @OneToOne
-    private BatchStock batchStock;
+    @OneToMany(mappedBy = "inboundOrder")
+    private List<Stock> batchStock;
 
 
 }

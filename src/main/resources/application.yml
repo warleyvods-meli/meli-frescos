@@ -28,5 +28,5 @@ springdoc:
 
 app:
   title: dambetan01
-  description: @project.description@
-  version: @project.version@
+  description: project.description
+  version: project.version
