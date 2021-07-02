@@ -9,8 +9,8 @@ Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 ### Added
 - implementação do requisito US001: COMO Representante do armazém, QUERO inserir um lote de produtos PARA
   registrar a existência do estoque.
-  - criação DER versão 1:
-    //insert image her
+  - criação DER versão 1: <br>
+    <img src="https://github.com/warleyvods-meli/meli-frescos/blob/feature-documentation/docs/guide/diagrams/db_diagram_v1.png?raw=true" alt="DER" height="600" width="400">
   - criação do diagrama de sequência US001:
   ```mermaid
     sequenceDiagram
