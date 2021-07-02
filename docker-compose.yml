@@ -1,25 +1,15 @@
-version: '3'
+version: "3.9"
 
 services:
-  mysqlsrv:
-    image: mysql:5.7
+  db:
+    image: mysql:8
+#    volumes:
+#      - db_data:/var/lib/mysql
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: "root"
-      MYSQL_DATABASE: "database"
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: datatest
+      MYSQL_USER: user0
+      MYSQL_PASSWORD: root
     ports:
-      - "3305:3305"
-    volumes:
-      - /Users/warsilva/Desktop/mysql:/var/lib/mysql
-    networks:
-      - mysql-compose-network
-
-#  adminer:
-#    image: adminer
-#    ports:
-#      - 8080:8080
-#    networks:
-#      - mysql-compose-network
-
-networks:
-  mysql-compose-network:
-    driver: bridge
+    - "3306:3306"

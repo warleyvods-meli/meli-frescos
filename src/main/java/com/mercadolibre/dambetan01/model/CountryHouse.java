@@ -16,9 +16,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CountryHouse {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
 
     @Unique
