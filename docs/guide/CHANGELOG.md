@@ -1,24 +1,45 @@
 
 # Change Log
-All notable changes to this project will be documented in this file.
+Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/)
-and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased] - yyyy-mm-dd
+## Update - 02-06-2021
 
-Here we write upgrading notes for brands. It's a team effort to make them as
-straightforward as possible.
 
 ### Added
-- [PROJECTNAME-XXXX](http://tickets.projectname.com/browse/PROJECTNAME-XXXX)
-  MINOR Ticket title goes here.
-- [PROJECTNAME-YYYY](http://tickets.projectname.com/browse/PROJECTNAME-YYYY)
-  PATCH Ticket title goes here.
+- implementação do requisito US001: COMO Representante do armazém, QUERO inserir um lote de produtos PARA
+  registrar a existência do estoque.
+  - criação DER versão 1:
+    //insert image her
+  - criação do diagrama de sequência US001:
+  ```mermaid
+    sequenceDiagram
+    Agent->>+ Controller: inbound order
+    Controller->>+ Service: inbound order
+    Service->> + WareHouseValidator: warehouse is valid?
+    alt is valid
+         WareHouseValidator ->> - AgentValidator: the agent belongs to the warehouse?
+         AgentValidator ->> WareHouseValidator: ok
+         alt is valid
+            AgentValidator->> SectionValidator: the sector is valid?
+            SectionValidator ->> AgentValidator: ok
+            WareHouseValidator ->> Service: ok
+        else not valid
+            SectionValidator ->> AgentValidator: exception
+        end
+    else not valid
+        WareHouseValidator ->> Service: exception
+    end
+    Service ->> + Repository: save inboud order
+    Repository --> Service : save complete
+    Service ->> -Controller: it's all right!
+    Controller ->> Agent: status code 201
+            
+  ```
 
 ### Changed
-    x
+    nada mudou
 ### Fixed
-    x
+    nada foi corrigido
 
  
