@@ -26,4 +26,7 @@ public class Product {
     @ManyToOne
     private PurchaseOrder purchaseOrder;
 
+    @OneToOne
+    private Stock stock;
+
 }

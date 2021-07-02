@@ -1,6 +1,7 @@
 package com.mercadolibre.dambetan01.service.impl;
 
 import com.mercadolibre.dambetan01.dtos.response.PurchaseOrderResponseDTO;
+import com.mercadolibre.dambetan01.exceptions.NotFoundException;
 import com.mercadolibre.dambetan01.model.Product;
 import com.mercadolibre.dambetan01.model.PurchaseOrder;
 import com.mercadolibre.dambetan01.repository.PurchaseOrderRepository;
@@ -25,8 +26,18 @@ public class PurchaseOrderServiceImpl implements IPurcharseOrderService {
     }
 
     @Override
-    public List<PurchaseOrder> listAll() {
-        return purchaseOrderRepository.findAll();
+    public PurchaseOrder save(PurchaseOrder purchaseOrder) {
+        return purchaseOrderRepository.save(purchaseOrder);
     }
 
+    @Override
+    public PurchaseOrder findById(Long id) {
+        return purchaseOrderRepository.findById(id).orElseThrow(() -> new NotFoundException("not found"));
+    }
+
+
+    @Override
+    public List <PurchaseOrder> getAll() {
+        return purchaseOrderRepository.findAll();
+    }
 }

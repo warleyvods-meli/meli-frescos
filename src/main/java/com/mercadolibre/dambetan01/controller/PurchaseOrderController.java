@@ -14,20 +14,9 @@ import java.util.List;
 public class PurchaseOrderController {
 
 
-    private final IPurcharseOrderService purcharseOrderService;
+    private final IPurcharseOrderService purchaseOrderService;
 
-    public PurchaseOrderController(IPurcharseOrderService purcharseOrderService) {
-        this.purcharseOrderService = purcharseOrderService;
+    public PurchaseOrderController(IPurcharseOrderService purchaseOrderService) {
+        this.purchaseOrderService = purchaseOrderService;
     }
-
-    @PostMapping("/orders")
-    public ResponseEntity<PurchaseOrderResponseDTO> savePurchaseOrder(@RequestBody PurchaseOrder purchaseOrder) {
-        return new ResponseEntity<>(purcharseOrderService.savePurchaseOrder(purchaseOrder), HttpStatus.CREATED);
-    }
-
-    @GetMapping
-    public ResponseEntity<List<PurchaseOrder>> listAll() {
-        return new ResponseEntity<>(purcharseOrderService.listAll(), HttpStatus.OK);
-    }
-
 }

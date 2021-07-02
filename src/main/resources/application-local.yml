@@ -4,17 +4,17 @@
 
 spring:
   datasource:
-    host: localhost:3305
-    db: database
+    host: localhost:3306
+    db: meli_frescos
     username: root
-    password: root
+    password: BCG-E2643b
     initialization-mode: always
 
   jpa:
     show-sql: true
     hibernate:
       sql: debug
-      ddl-auto: none # create-drop para crear las entidades, una vez creadas y finalizado el mododel cambiar a none
+      ddl-auto: create-drop # create-drop para crear las entidades, una vez creadas y finalizado el mododel cambiar a none
     database-platform: org.hibernate.dialect.MySQL8Dialect
 
 

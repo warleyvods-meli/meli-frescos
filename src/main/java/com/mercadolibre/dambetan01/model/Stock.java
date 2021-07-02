@@ -22,6 +22,9 @@ public class Stock {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToOne
+    private Product product;
+
     private Float currentTemperature;
     private Float minimumTemperature;
     private Integer initialQuantity;
@@ -31,5 +34,6 @@ public class Stock {
     private LocalDate dueDate;
 
     @ManyToOne
-    private BatchStock batchstock;
+    private InboundOrder inboundOrder;
+
 }

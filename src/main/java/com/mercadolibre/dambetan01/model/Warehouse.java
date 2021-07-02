@@ -20,9 +20,6 @@ public class Warehouse {
     private String name;
 
     @OneToMany(mappedBy = "warehouse")
-    //@JoinColumn(name = "id_section_fk")
     private List<Section> sectionList;
-
-//    private List<String> batchStock;
 
 }
