@@ -14,14 +14,18 @@ INSERT INTO `accounts` (`id`, `password`, `rol`, `username`, `id_country_house_f
 --======================================================
 
 --AGENT
-INSERT INTO agent (id, email, name, password, user_type) VALUES (1, 'email@email.com', 'Marcos', '123', 'String');
-INSERT INTO agent (id, email, name, password, user_type) VALUES (2, 'email@email.com', 'Antonio', '123', 'String');
-INSERT INTO agent (id, email, name, password, user_type) VALUES (3, 'email@email.com', 'Jose', '123', 'String');
-INSERT INTO agent (id, email, name, password, user_type) VALUES (4, 'email@email.com', 'Pedro', '123', 'String');
+INSERT INTO agent (id, email, name, password, user_type) VALUES (1, 'marcos@email.com', 'Marcos', '123', 'AGENT');
+INSERT INTO agent (id, email, name, password, user_type) VALUES (2, 'antonio@email.com', 'Antonio', '123', 'AGENT');
+INSERT INTO agent (id, email, name, password, user_type) VALUES (3, 'jose@email.com', 'Jose', '123', 'AGENT');
+INSERT INTO agent (id, email, name, password, user_type) VALUES (4, 'pedro@email.com', 'Pedro', '123', 'AGENT');
 
 --SELLER
-INSERT INTO seller(id, email, name, password, user_type) VALUES (1, 'seller@seller', 'Maicao', '123', 'String');
-INSERT INTO seller(id, email, name, password, user_type) VALUES (2, 'seller@seller', 'Perigo', '123', 'String');
+INSERT INTO seller(id, email, name, password, user_type) VALUES (1, 'seller1@email.com', 'Maicao', '123', 'SELLER');
+INSERT INTO seller(id, email, name, password, user_type) VALUES (2, 'seller2@email.com', 'Perigo', '123', 'SELLER');
+
+--BUYER
+INSERT INTO buyer(id, email, name, password, user_type) VALUES (1, 'buyer1@email.com', 'Neide', '123', 'BUYER');
+INSERT INTO buyer(id, email, name, password, user_type) VALUES (2, 'buyer2@email.com', 'Valdo', '123', 'BUYER');
 
 --PRODUCT
 INSERT INTO product(id, category, product_name, seller_id) VALUES(1, 'Frios', 'Carne', 1);

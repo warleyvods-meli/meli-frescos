@@ -2,13 +2,21 @@ package com.mercadolibre.dambetan01.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 @Builder
-public class Agent extends User{
+@AllArgsConstructor
+@NoArgsConstructor
+public class Agent{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Embedded
+    User personalData;
 
     public void orderEntry(){};
 }

@@ -4,8 +4,9 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountResponseDTO {
+public class UserResponseDTO {
     private String username;
     private String password;
+    private String userType;
     private String token;
 }
