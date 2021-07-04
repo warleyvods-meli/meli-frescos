@@ -1,5 +1,6 @@
 package com.mercadolibre.dambetan01.model;
 
+import com.mercadolibre.dambetan01.enums.StorageType;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,8 +18,10 @@ public class Product {
     private Long id;
 
     private String productName;
-    private String category;
     private Double price;
+
+    @Enumerated(EnumType.STRING)
+    private StorageType category;
 
     @ManyToOne
     private Seller seller;

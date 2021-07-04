@@ -26,6 +26,10 @@ public class InboundOrder {
 
     private int orderNumber;
 
+    @OneToOne
+    private Agent agent;
+
+
     @ManyToOne
     @JoinColumn(name = "id_section_fk", nullable = false)
     private Section section;

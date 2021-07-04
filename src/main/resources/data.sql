@@ -13,11 +13,6 @@ INSERT INTO `accounts` (`id`, `password`, `rol`, `username`, `id_country_house_f
 --                   MOCK DATA
 --======================================================
 
---AGENT
-INSERT INTO agent (id, email, name, password, user_type) VALUES (1, 'marcos@email.com', 'Marcos', '123', 'AGENT');
-INSERT INTO agent (id, email, name, password, user_type) VALUES (2, 'antonio@email.com', 'Antonio', '123', 'AGENT');
-INSERT INTO agent (id, email, name, password, user_type) VALUES (3, 'jose@email.com', 'Jose', '123', 'AGENT');
-INSERT INTO agent (id, email, name, password, user_type) VALUES (4, 'pedro@email.com', 'Pedro', '123', 'AGENT');
 
 --SELLER
 INSERT INTO seller(id, email, name, password, user_type) VALUES (1, 'seller1@email.com', 'Maicao', '123', 'SELLER');
@@ -28,13 +23,19 @@ INSERT INTO buyer(id, email, name, password, user_type) VALUES (1, 'buyer1@email
 INSERT INTO buyer(id, email, name, password, user_type) VALUES (2, 'buyer2@email.com', 'Valdo', '123', 'BUYER');
 
 --PRODUCT
-INSERT INTO product(id, category, product_name, seller_id) VALUES(1, 'Frios', 'Carne', 1);
-INSERT INTO product(id, category, product_name, seller_id) VALUES(2, 'Frios', 'Legumes', 2);
-INSERT INTO product(id, category, product_name, seller_id) VALUES(3, 'Frescos', 'Frutas', 2);
+INSERT INTO product(id, category, product_name, seller_id) VALUES(1, 'FROZEN', 'Carne', 1);
+INSERT INTO product(id, category, product_name, seller_id) VALUES(2, 'AIRY', 'Legumes', 2);
+INSERT INTO product(id, category, product_name, seller_id) VALUES(3, 'CHILLED', 'Frutas', 2);
 
 --WAREHOUSE
 INSERT INTO warehouse(id, name) VALUES(1, 'Cajamar Fullfilment');
 INSERT INTO warehouse(id, name) VALUES(2, 'Bahia Fullfilment');
+
+--AGENT
+INSERT INTO agent (id, email, name, password, user_type, warehouse_id) VALUES (1, 'marcos@email.com', 'Marcos', '123', 'AGENT', 1);
+INSERT INTO agent (id, email, name, password, user_type, warehouse_id) VALUES (2, 'antonio@email.com', 'Antonio', '123', 'AGENT', 1);
+INSERT INTO agent (id, email, name, password, user_type, warehouse_id) VALUES (3, 'jose@email.com', 'Jose', '123', 'AGENT', 2);
+INSERT INTO agent (id, email, name, password, user_type, warehouse_id) VALUES (4, 'pedro@email.com', 'Pedro', '123', 'AGENT', 2);
 
 --SECTION
 INSERT INTO `section`(id, section_name, capacity, warehouse_id) VALUES(1, 'CHILLED', 100, 1);

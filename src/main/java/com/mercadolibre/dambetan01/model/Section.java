@@ -1,6 +1,6 @@
 package com.mercadolibre.dambetan01.model;
 
-import com.mercadolibre.dambetan01.enums.SectionType;
+import com.mercadolibre.dambetan01.enums.StorageType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,7 +22,7 @@ public class Section {
     private int capacity;
 
     @Enumerated(EnumType.STRING)
-    private SectionType sectionName;
+    private StorageType sectionName;
 
     @ManyToOne
     private Warehouse warehouse;

@@ -31,7 +31,9 @@ public class WareHouseController {
                                                                     @RequestHeader(value = "AgentId") int agentId,
                                                                     @RequestBody InboundOrderRequest request) {
         Agent agent = agentService.findById((long) agentId);
-        InboundOrder validOrder = agent.createInboundOrder(inboundOrderMapper.requestToEntity(request));
+        var orderToCheck = inboundOrderMapper.requestToEntity(request);
+        orderToCheck.setAgent(agent);
+        InboundOrder validOrder = agent.createInboundOrder(orderToCheck);
         InboundOrderResponse response = inboundOrderMapper.EntityToResponse(inboundOrderService.saveWithChild(validOrder));
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
 

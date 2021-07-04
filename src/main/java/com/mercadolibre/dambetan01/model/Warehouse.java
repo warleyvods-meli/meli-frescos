@@ -22,4 +22,7 @@ public class Warehouse {
     @OneToMany(mappedBy = "warehouse")
     private List<Section> sectionList;
 
+    @OneToMany(mappedBy = "warehouse")
+    private List<Agent> agents;
+
 }

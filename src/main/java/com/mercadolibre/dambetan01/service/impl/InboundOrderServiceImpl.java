@@ -46,4 +46,5 @@ public class InboundOrderServiceImpl implements IInboundOrderService {
     public List<Stock> fillStockList(int inboundOrderNumber){
         return repository.fillStockList(inboundOrderNumber);
     }
+
 }

@@ -18,6 +18,12 @@ public class Agent{
     @Embedded
     User personalData;
 
+    @ManyToOne
+    private Warehouse warehouse;
+
+    @OneToOne
+    private InboundOrder inboundOrder;
+
     public InboundOrder createInboundOrder(InboundOrder inboundOrder){
         return  inboundOrder;
     };
