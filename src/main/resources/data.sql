@@ -37,12 +37,12 @@ INSERT INTO warehouse(id, name) VALUES(1, 'Cajamar Fullfilment');
 INSERT INTO warehouse(id, name) VALUES(2, 'Bahia Fullfilment');
 
 --SECTION
-INSERT INTO `section`(id, section_name, warehouse_id)VALUES(1, 'Rua 1', 1);
-INSERT INTO `section`(id, section_name, warehouse_id)VALUES(2, 'Rua 2', 1);
-INSERT INTO `section`(id, section_name, warehouse_id)VALUES(3, 'Rua 3', 1);
-INSERT INTO `section`(id, section_name, warehouse_id)VALUES(4, 'Rua 4', 2);
-INSERT INTO `section`(id, section_name, warehouse_id)VALUES(5, 'Rua 5', 2);
-INSERT INTO `section`(id, section_name, warehouse_id)VALUES(6, 'Rua 6', 2);
+INSERT INTO `section`(id, section_name, capacity, warehouse_id) VALUES(1, 'CHILLED', 100, 1);
+INSERT INTO `section`(id, section_name, capacity, warehouse_id) VALUES(2, 'FROZEN', 100, 1);
+INSERT INTO `section`(id, section_name, capacity, warehouse_id) VALUES(3, 'AIRY', 100, 1);
+INSERT INTO `section`(id, section_name, capacity, warehouse_id) VALUES(4, 'CHILLED', 100, 2);
+INSERT INTO `section`(id, section_name, capacity, warehouse_id) VALUES(5, 'FROZEN', 100, 2);
+INSERT INTO `section`(id, section_name, capacity, warehouse_id) VALUES(6, 'AIRY', 100, 2);
 
 
 --ORDER IN

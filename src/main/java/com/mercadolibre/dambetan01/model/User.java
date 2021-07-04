@@ -1,5 +1,6 @@
 package com.mercadolibre.dambetan01.model;
 
+import com.mercadolibre.dambetan01.enums.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

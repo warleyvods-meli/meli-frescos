@@ -18,5 +18,7 @@ public class Agent{
     @Embedded
     User personalData;
 
-    public void orderEntry(){};
+    public InboundOrder createInboundOrder(InboundOrder inboundOrder){
+        return  inboundOrder;
+    };
 }
