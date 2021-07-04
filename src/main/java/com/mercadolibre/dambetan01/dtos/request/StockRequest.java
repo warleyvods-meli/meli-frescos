@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 public class StockRequest {
 
     private int batchNumber;
+    private int orderNumber;
     private int productId;
     private double currentTemperature;
     private double minimumTemperature;

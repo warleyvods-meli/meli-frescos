@@ -32,7 +32,7 @@ public class WareHouseController {
                                                                     @RequestBody InboundOrderRequest request) {
         Agent agent = agentService.findById((long) agentId);
         InboundOrder validOrder = agent.createInboundOrder(inboundOrderMapper.requestToEntity(request));
-        InboundOrderResponse response = inboundOrderMapper.EntityToResponse(inboundOrderService.save(validOrder));
+        InboundOrderResponse response = inboundOrderMapper.EntityToResponse(inboundOrderService.saveWithChild(validOrder));
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
 
     }

@@ -46,9 +46,9 @@ INSERT INTO `section`(id, section_name, capacity, warehouse_id) VALUES(6, 'AIRY'
 
 
 --ORDER IN
-INSERT INTO inbound_order (id, order_date, id_section_fk) VALUES(1, '2021-01-01 00:00:00', 1);
-INSERT INTO inbound_order (id, order_date, id_section_fk) VALUES(2, '2021-01-01 00:00:00', 2);
+INSERT INTO inbound_order (id, order_date, order_number, id_section_fk) VALUES(1, '2021-01-01 00:00:00', 123, 1);
+INSERT INTO inbound_order (id, order_date, order_number, id_section_fk) VALUES(2, '2021-01-01 00:00:00', 321, 2);
 
 --STOCK
-INSERT INTO stock (id, current_quantity, current_temperature, due_date, initial_quantity, manufacturing_date, manufacturing_time, minimum_temperature, inbound_order_id) VALUES(1, 20, 25.0, '2021-01-01', 50, '2021-01-01', '2021-01-01 00:00:00', 10.0, 1);
-INSERT INTO stock (id, current_quantity, current_temperature, due_date, initial_quantity, manufacturing_date, manufacturing_time, minimum_temperature, inbound_order_id) VALUES(2, 20, 25.0, '2021-01-01', 50, '2021-01-01', '2021-01-01 00:00:00', 10.0, 2);
+INSERT INTO stock (id, batch_number, current_quantity, current_temperature, due_date, initial_quantity, manufacturing_date, manufacturing_time, minimum_temperature, order_number) VALUES(1, 666, 20, 25.0, '2021-01-01', 50, '2021-01-01', '2021-01-01 00:00:00', 10.0, 123);
+INSERT INTO stock (id, batch_number, current_quantity, current_temperature, due_date, initial_quantity, manufacturing_date, manufacturing_time, minimum_temperature, order_number) VALUES(2, 777, 20, 25.0, '2021-01-01', 50, '2021-01-01', '2021-01-01 00:00:00', 10.0, 321);
