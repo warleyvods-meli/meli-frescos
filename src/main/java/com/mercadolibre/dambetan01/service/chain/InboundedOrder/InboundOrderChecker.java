@@ -12,5 +12,5 @@ public abstract class InboundOrderChecker {
         this.nextChecker = nextChecker;
     }
 
-    public abstract boolean verify(InboundOrder order, Warehouse warehouse);
+    public abstract boolean verify(InboundOrder order);
 }

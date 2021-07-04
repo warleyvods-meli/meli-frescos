@@ -1,5 +1,6 @@
 package com.mercadolibre.dambetan01.model;
 
+import com.mercadolibre.dambetan01.service.chain.InboundedOrder.*;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,6 +26,8 @@ public class Agent{
     private InboundOrder inboundOrder;
 
     public InboundOrder createInboundOrder(InboundOrder inboundOrder){
+        InboundOrderChecker chain = new CheckerByWarehouse(new CheckerByAgent(new CheckerByProductSection(new CheckerBySectionSpace(new CheckerFinalyze()))));
+        boolean resultChecker = chain.verify(inboundOrder);
         return  inboundOrder;
     };
 }

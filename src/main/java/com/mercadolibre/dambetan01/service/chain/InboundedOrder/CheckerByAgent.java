@@ -15,13 +15,14 @@ public class CheckerByAgent extends InboundOrderChecker{
         check if the agent belongs to warehouse
      */
     @Override
-    public boolean verify(InboundOrder order, Warehouse warehouse) {
-          var result = warehouse.getAgents()
+    public boolean verify(InboundOrder order) {
+          var result = order.getSection().getWarehouse().getAgents()
                   .stream()
                   .anyMatch(agent -> agent.getPersonalData().getEmail().equals(order.getAgent().getPersonalData().getEmail()));
           if (result) {
               return true;
           }
-          throw new BadRequestException("Agent " + order.getAgent().getPersonalData().getName() + "does not belong to " + warehouse.getName() );
+          throw new BadRequestException("Agent " + order.getAgent().getPersonalData().getName() +
+                  "does not belong to " + order.getSection().getWarehouse().getName() );
     }
 }

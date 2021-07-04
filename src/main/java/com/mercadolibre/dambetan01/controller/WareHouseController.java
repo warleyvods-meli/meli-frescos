@@ -5,8 +5,10 @@ import com.mercadolibre.dambetan01.dtos.response.InboundOrderResponse;
 import com.mercadolibre.dambetan01.mapper.InboundOrderMapper;
 import com.mercadolibre.dambetan01.model.Agent;
 import com.mercadolibre.dambetan01.model.InboundOrder;
+import com.mercadolibre.dambetan01.model.Warehouse;
 import com.mercadolibre.dambetan01.service.IAgentService;
 import com.mercadolibre.dambetan01.service.IInboundOrderService;
+import com.mercadolibre.dambetan01.service.IWarehouseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +20,13 @@ public class WareHouseController {
     private final IAgentService agentService;
     private final InboundOrderMapper inboundOrderMapper;
     private final IInboundOrderService inboundOrderService;
+    private final IWarehouseService warehouseService;
 
-    public WareHouseController(IAgentService agentService, InboundOrderMapper inboundOrderMapper, IInboundOrderService inboundOrderService) {
+    public WareHouseController(IAgentService agentService, InboundOrderMapper inboundOrderMapper, IInboundOrderService inboundOrderService, IWarehouseService warehouseService) {
         this.agentService = agentService;
         this.inboundOrderMapper = inboundOrderMapper;
         this.inboundOrderService = inboundOrderService;
+        this.warehouseService = warehouseService;
     }
 
     @PostMapping("/fresh-products/inboundorder")

@@ -47,8 +47,8 @@ INSERT INTO `section`(id, section_name, capacity, warehouse_id) VALUES(6, 'AIRY'
 
 
 --ORDER IN
-INSERT INTO inbound_order (id, order_date, order_number, id_section_fk) VALUES(1, '2021-01-01 00:00:00', 123, 1);
-INSERT INTO inbound_order (id, order_date, order_number, id_section_fk) VALUES(2, '2021-01-01 00:00:00', 321, 2);
+INSERT INTO inbound_order (id, order_date, order_number, agent_id, id_section_fk) VALUES(1, '2021-01-01 00:00:00', 123, 1, 1);
+INSERT INTO inbound_order (id, order_date, order_number, agent_id, id_section_fk) VALUES(2, '2021-01-01 00:00:00', 321, 1, 2);
 
 --STOCK
 INSERT INTO stock (id, batch_number, current_quantity, current_temperature, due_date, initial_quantity, manufacturing_date, manufacturing_time, minimum_temperature, order_number) VALUES(1, 666, 20, 25.0, '2021-01-01', 50, '2021-01-01', '2021-01-01 00:00:00', 10.0, 123);
