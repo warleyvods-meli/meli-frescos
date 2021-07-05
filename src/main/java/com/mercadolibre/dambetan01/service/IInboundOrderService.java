@@ -11,4 +11,6 @@ public interface IInboundOrderService {
     InboundOrder findById(Long id);
 
     List<InboundOrder> getAll();
+
+    InboundOrder saveWithChild(InboundOrder validOrder);
 }

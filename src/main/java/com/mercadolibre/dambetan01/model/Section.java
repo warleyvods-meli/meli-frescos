@@ -1,10 +1,10 @@
 package com.mercadolibre.dambetan01.model;
 
+import com.mercadolibre.dambetan01.enums.StorageType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 
@@ -19,11 +19,12 @@ public class Section {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String sectionName;
+    private int capacity;
+
+    @Enumerated(EnumType.STRING)
+    private StorageType sectionName;
 
     @ManyToOne
     private Warehouse warehouse;
-
-
 
 }

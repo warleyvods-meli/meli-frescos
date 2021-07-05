@@ -1,9 +1,6 @@
 package com.mercadolibre.dambetan01.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -12,10 +9,10 @@ import java.util.List;
 
 @Entity
 @Table(name="stock")
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Stock {
 
     @Id
@@ -25,15 +22,14 @@ public class Stock {
     @OneToOne
     private Product product;
 
-    private Float currentTemperature;
-    private Float minimumTemperature;
+    private int batchNumber;
+    private Double currentTemperature;
+    private Double minimumTemperature;
     private Integer initialQuantity;
     private Integer currentQuantity;
     private LocalDate manufacturingDate;
     private LocalDateTime manufacturingTime;
     private LocalDate dueDate;
-
-    @ManyToOne
-    private InboundOrder inboundOrder;
+    private int orderNumber;
 
 }

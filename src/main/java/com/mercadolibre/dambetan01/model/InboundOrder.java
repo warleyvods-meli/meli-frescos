@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -20,14 +21,20 @@ public class InboundOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date orderDate;
+
+    private LocalDate orderDate;
+
+    private int orderNumber;
+
+    @OneToOne
+    private Agent agent;
+
 
     @ManyToOne
     @JoinColumn(name = "id_section_fk", nullable = false)
     private Section section;
 
-    @OneToMany(mappedBy = "inboundOrder")
+    @Transient
     private List<Stock> batchStock;
-
 
 }

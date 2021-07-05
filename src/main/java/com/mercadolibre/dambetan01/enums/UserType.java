@@ -1,4 +1,4 @@
-package com.mercadolibre.dambetan01.model;
+package com.mercadolibre.dambetan01.enums;
 
 public enum UserType {
     BUYER,
