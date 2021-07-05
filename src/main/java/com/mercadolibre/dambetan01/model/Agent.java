@@ -26,7 +26,8 @@ public class Agent{
     private InboundOrder inboundOrder;
 
     public InboundOrder createInboundOrder(InboundOrder inboundOrder){
-        InboundOrderChecker chain = new CheckerByWarehouse(new CheckerByAgent(new CheckerByProductSection(new CheckerBySectionSpace(new CheckerFinalyze()))));
+        InboundOrderChecker chain =
+                new CheckerByWarehouse(new CheckerByAgent(new CheckerByProductSection(new CheckerByStockTemperature(new CheckerBySectionSpace(new CheckerFinalyze())))));
         boolean resultChecker = chain.verify(inboundOrder);
         return  inboundOrder;
     };
