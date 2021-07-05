@@ -1,7 +1,6 @@
 package com.mercadolibre.dambetan01.service.impl;
 
-import com.mercadolibre.dambetan01.exceptions.BadRequestException;
-import com.mercadolibre.dambetan01.exceptions.NotFoundException;
+import com.mercadolibre.dambetan01.exceptions.error.NotFoundException;
 import com.mercadolibre.dambetan01.model.InboundOrder;
 import com.mercadolibre.dambetan01.model.Section;
 import com.mercadolibre.dambetan01.model.Stock;

@@ -1,12 +1,8 @@
 package com.mercadolibre.dambetan01.service.chain.InboundedOrder;
 
-import com.mercadolibre.dambetan01.exceptions.BadRequestException;
+import com.mercadolibre.dambetan01.exceptions.error.BadRequestException;
 import com.mercadolibre.dambetan01.model.InboundOrder;
-import com.mercadolibre.dambetan01.model.Product;
 import com.mercadolibre.dambetan01.model.Stock;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class CheckerBySectionSpace extends InboundOrderChecker{
 

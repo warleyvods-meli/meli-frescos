@@ -19,13 +19,11 @@ public class WareHouseController {
     private final IAgentService agentService;
     private final InboundOrderMapper inboundOrderMapper;
     private final IInboundOrderService inboundOrderService;
-    private final IBuyerService service;
 
-    public WareHouseController(IAgentService agentService, InboundOrderMapper inboundOrderMapper, IInboundOrderService inboundOrderService, IBuyerService service) {
+    public WareHouseController(IAgentService agentService, InboundOrderMapper inboundOrderMapper, IInboundOrderService inboundOrderService) {
         this.agentService = agentService;
         this.inboundOrderMapper = inboundOrderMapper;
         this.inboundOrderService = inboundOrderService;
-        this.service = service;
     }
 
     @PostMapping("/fresh-products/inboundorder")

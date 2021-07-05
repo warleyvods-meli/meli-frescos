@@ -1,6 +1,6 @@
 package com.mercadolibre.dambetan01.service.impl;
 
-import com.mercadolibre.dambetan01.exceptions.NotFoundException;
+import com.mercadolibre.dambetan01.exceptions.error.NotFoundException;
 import com.mercadolibre.dambetan01.model.Buyer;
 import com.mercadolibre.dambetan01.repository.BuyerRepository;
 import com.mercadolibre.dambetan01.service.IBuyerService;

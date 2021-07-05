@@ -1,9 +1,7 @@
 package com.mercadolibre.dambetan01.service.chain.InboundedOrder;
 
-import com.mercadolibre.dambetan01.exceptions.BadRequestException;
-import com.mercadolibre.dambetan01.model.Agent;
+import com.mercadolibre.dambetan01.exceptions.error.BadRequestException;
 import com.mercadolibre.dambetan01.model.InboundOrder;
-import com.mercadolibre.dambetan01.model.Warehouse;
 
 public class CheckerByAgent extends InboundOrderChecker{
 
