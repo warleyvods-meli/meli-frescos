@@ -25,7 +25,7 @@ public class Agent{
     @OneToOne
     private InboundOrder inboundOrder;
 
-    public InboundOrder createInboundOrder(InboundOrder inboundOrder){
+    public InboundOrder validateInboundOrder(InboundOrder inboundOrder){
         InboundOrderChecker chain =
                 new CheckerByWarehouse(new CheckerByAgent(new CheckerByProductSection(new CheckerByStockTemperature(new CheckerBySectionSpace(new CheckerFinalyze())))));
         boolean resultChecker = chain.verify(inboundOrder);
