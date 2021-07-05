@@ -19,7 +19,7 @@ public class CheckerByWarehouse extends InboundOrderChecker{
                 .stream()
                 .anyMatch(section -> section.getSectionName().getTemperature().equals(order.getSection().getSectionName().getTemperature()));
         if (result) {
-            return true;
+            return nextChecker.verify(order);
         }
         throw new BadRequestException("Section " + order.getSection().getSectionName() +
                 "does not belong to " + order.getSection().getWarehouse().getName() );

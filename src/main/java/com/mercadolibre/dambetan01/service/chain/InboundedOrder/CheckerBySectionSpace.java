@@ -23,6 +23,6 @@ public class CheckerBySectionSpace extends InboundOrderChecker{
         if(order.getSection().getCapacity() < neededSpace) {
             throw new BadRequestException("there is no more space in this section");
         }
-        return true;
+        return nextChecker.verify(order);
     }
 }

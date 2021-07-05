@@ -20,7 +20,7 @@ public class CheckerByAgent extends InboundOrderChecker{
                   .stream()
                   .anyMatch(agent -> agent.getPersonalData().getEmail().equals(order.getAgent().getPersonalData().getEmail()));
           if (result) {
-              return true;
+              return nextChecker.verify(order);
           }
           throw new BadRequestException("Agent " + order.getAgent().getPersonalData().getName() +
                   "does not belong to " + order.getSection().getWarehouse().getName() );

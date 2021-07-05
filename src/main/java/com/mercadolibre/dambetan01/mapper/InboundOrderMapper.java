@@ -85,4 +85,14 @@ public class InboundOrderMapper {
         ));
         return InboundOrderResponse.builder().batchStock(stockRequestList).build();
     }
+
+    public InboundOrder requestToEntityForPut(InboundOrderRequest request, int orderId) {
+        var savedOrder = inboundOrderService.findById((long)orderId);
+        var newOrder = requestToEntity(request);
+        savedOrder.setOrderDate(newOrder.getOrderDate());
+        savedOrder.setOrderNumber(newOrder.getOrderNumber());
+        savedOrder.setSection(newOrder.getSection());
+        savedOrder.setBatchStock(newOrder.getBatchStock());
+        return savedOrder;
+    }
 }

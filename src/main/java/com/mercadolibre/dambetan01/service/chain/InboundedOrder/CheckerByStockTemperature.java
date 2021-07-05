@@ -21,7 +21,7 @@ public class CheckerByStockTemperature extends InboundOrderChecker{
     @Override
     public boolean verify(InboundOrder order) {
         order.getBatchStock().forEach(stock -> checkTemperatureRange(order.getSection(), stock));
-        return true;
+        return nextChecker.verify(order);
     }
 
     private void checkTemperatureRange(Section section, Stock stock) {
