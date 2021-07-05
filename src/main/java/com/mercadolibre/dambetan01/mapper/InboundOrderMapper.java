@@ -36,14 +36,14 @@ public class InboundOrderMapper {
         return InboundOrder.builder()
                 .orderDate(request.getOrderDate())
                 .section(this.sectionRequestToSection(request.getSection()))
-                .batchStock(this.batchStockRequestToBatchStock(request.getBatchStock()))
+                .batchStock(this.batchStockRequestToBatchStock(request))
                 .orderNumber(request.getOrderNumber())
                 .build();
     }
 
-    private List<Stock> batchStockRequestToBatchStock(List<StockRequest> batchStockRequest) {
+    private List<Stock> batchStockRequestToBatchStock(InboundOrderRequest inboundOrderRequests) {
         List<Stock> stockList = new ArrayList <>();
-        batchStockRequest.forEach(bsr -> stockList.add(Stock.builder()
+        inboundOrderRequests.getBatchStock().forEach(bsr -> stockList.add(Stock.builder()
                 .currentTemperature(bsr.getCurrentTemperature())
                 .dueDate(bsr.getDueDate())
                 .manufacturingDate(bsr.getManufacturingDate())
@@ -54,6 +54,7 @@ public class InboundOrderMapper {
                 .manufacturingTime(bsr.getManufacturingTime())
                 .orderNumber(bsr.getOrderNumber())
                 .batchNumber(bsr.getBatchNumber())
+                .section(this.sectionRequestToSection(inboundOrderRequests.getSection()))
                 .build()
         ));
 
