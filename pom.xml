@@ -26,6 +26,8 @@
         <junit-jupiter.version>5.7.0</junit-jupiter.version>
         <junit.platform.version>1.7.0</junit.platform.version>
         <springdoc.version>1.5.2</springdoc.version>
+        <enforcer.skip>true</enforcer.skip>
+
     </properties>
 
     <repositories>
@@ -482,6 +484,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.12.3</version>
         </dependency>
 
         <!-- conversion (ENTITY a  DTO) y conversion (DTO a ENTITY) -->

@@ -32,4 +32,7 @@ public class Stock {
     private LocalDate dueDate;
     private int orderNumber;
 
+    @ManyToOne
+    private Section section;
+
 }
