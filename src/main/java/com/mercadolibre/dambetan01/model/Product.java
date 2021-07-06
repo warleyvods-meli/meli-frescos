@@ -4,6 +4,7 @@ import com.mercadolibre.dambetan01.enums.StorageType;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="product")
@@ -29,8 +30,8 @@ public class Product {
     @ManyToOne
     private PurchaseOrder purchaseOrder;
 
-    @OneToOne
-    private Stock stock;
+    @OneToMany(mappedBy = "product")
+    private List<Stock> stockList;
 
 
 

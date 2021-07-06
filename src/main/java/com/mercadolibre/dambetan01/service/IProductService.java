@@ -1,5 +1,6 @@
 package com.mercadolibre.dambetan01.service;
 
+import com.mercadolibre.dambetan01.dtos.response.ProductLocationResponseDTO;
 import com.mercadolibre.dambetan01.model.Product;
 
 import java.util.List;
@@ -11,4 +12,6 @@ public interface IProductService {
     Product findById(Long id);
 
     List<Product> getAll();
+
+    ProductLocationResponseDTO getProductLocation(Long productId, Long warehouseId);
 }
