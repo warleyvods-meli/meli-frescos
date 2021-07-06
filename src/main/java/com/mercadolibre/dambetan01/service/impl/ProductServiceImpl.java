@@ -1,6 +1,9 @@
 package com.mercadolibre.dambetan01.service.impl;
 
+import com.mercadolibre.dambetan01.dtos.ProductResponseDTO;
+import com.mercadolibre.dambetan01.enums.StorageType;
 import com.mercadolibre.dambetan01.exceptions.error.NotFoundException;
+import com.mercadolibre.dambetan01.mapper.ProductMapper;
 import com.mercadolibre.dambetan01.model.Product;
 import com.mercadolibre.dambetan01.repository.ProductRepository;
 import com.mercadolibre.dambetan01.service.IProductService;
@@ -17,7 +20,6 @@ public class ProductServiceImpl implements IProductService {
         this.productRepository = productRepostitory;
     }
 
-
     @Override
     public Product save(Product product) {
         return productRepository.save(product);
@@ -29,7 +31,12 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public List <Product> getAll() {
-        return productRepository.findAll();
+    public List<ProductResponseDTO> getAll() {
+        return ProductMapper.INSTANCE.productListToDtoList(productRepository.findAll());
+    }
+
+    @Override
+    public List<ProductResponseDTO> findProductsCategory(StorageType storageType) {
+        return ProductMapper.INSTANCE.productListToDtoList(productRepository.findProductByCategory(storageType));
     }
 }
