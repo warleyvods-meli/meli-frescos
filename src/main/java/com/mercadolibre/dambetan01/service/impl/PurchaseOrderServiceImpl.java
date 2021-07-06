@@ -89,4 +89,11 @@ public class PurchaseOrderServiceImpl implements IPurcharseOrderService {
         PurchaseOrder purchaseOrder = findById(idOrder);
         return INSTANCE.productListToDtoList(purchaseOrder.getProducts());
     }
+
+    @Override
+    public PurchaseOrder editOrder(Long id, PurchaseOrderRequestDTO purchaseOrderRequestDTO) {
+        PurchaseOrder purchaseOrder = findById(id);
+        savePurchaseOrder(purchaseOrderRequestDTO);
+        return null;
+    }
 }

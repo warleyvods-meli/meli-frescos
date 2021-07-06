@@ -47,11 +47,11 @@ public class PurchaseOrderController {
     public ResponseEntity<List<ProductResponseDTO>> listAllProductsInOrder(@RequestParam Long idOrder) {
         return new ResponseEntity<>(purchaseOrderService.listAllProductsInOrder(idOrder), HttpStatus.OK);
     }
-//
-//    @PutMapping("/orders")
-//    public ResponseEntity<PurchaseOrder> editOrder(@RequestParam Long id, @RequestBody @Valid PurchaseOrderRequestDTO purchaseOrderRequestDTO) {
-//        return new ResponseEntity<>(purchaseOrderService.editOrder(id, purchaseOrderRequestDTO), HttpStatus.OK);
-//    }
+
+    @PutMapping("/orders")
+    public ResponseEntity<PurchaseOrder> editOrder(@RequestParam Long id, @RequestBody @Valid PurchaseOrderRequestDTO purchaseOrderRequestDTO) {
+        return new ResponseEntity<>(purchaseOrderService.editOrder(id, purchaseOrderRequestDTO), HttpStatus.OK);
+    }
 
 
 }
