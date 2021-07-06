@@ -31,12 +31,12 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public List <Product> getAll() {
-        return productRepository.findAll();
+    public List<ProductResponseDTO> getAll() {
+        return ProductMapper.INSTANCE.productListToDtoList(productRepository.findAll());
     }
 
     @Override
     public List<ProductResponseDTO> findProductsCategory(StorageType storageType) {
-        return ProductMapper.INSTANCE.productDTOListToProduct(productRepository.findProductByCategory(storageType));
+        return ProductMapper.INSTANCE.productListToDtoList(productRepository.findProductByCategory(storageType));
     }
 }

@@ -13,6 +13,6 @@ public abstract class ProductMapper {
 
     public static final ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
 
-    public abstract List<ProductResponseDTO> productDTOListToProduct(List<Product> product);
+    public abstract List<ProductResponseDTO> productListToDtoList(List<Product> product);
 
 }

@@ -1,5 +1,6 @@
 package com.mercadolibre.dambetan01.service.impl;
 
+import com.mercadolibre.dambetan01.dtos.ProductResponseDTO;
 import com.mercadolibre.dambetan01.dtos.request.PurchaseOrderRequestDTO;
 import com.mercadolibre.dambetan01.dtos.response.PurchaseOrderResponseDTO;
 import com.mercadolibre.dambetan01.exceptions.error.NotFoundException;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.mercadolibre.dambetan01.dtos.response.PurchaseOrderResponseDTO.*;
+import static com.mercadolibre.dambetan01.mapper.ProductMapper.INSTANCE;
 
 @Service
 public class PurchaseOrderServiceImpl implements IPurcharseOrderService {
@@ -80,5 +82,11 @@ public class PurchaseOrderServiceImpl implements IPurcharseOrderService {
     @Override
     public List <PurchaseOrder> getAll() {
         return purchaseOrderRepository.findAll();
+    }
+
+    @Override
+    public List<ProductResponseDTO> listAllProductsInOrder(Long idOrder) {
+        PurchaseOrder purchaseOrder = findById(idOrder);
+        return INSTANCE.productListToDtoList(purchaseOrder.getProducts());
     }
 }
