@@ -50,7 +50,7 @@ public class PurchaseOrderServiceImpl implements IPurcharseOrderService {
 
     private void validatedRequest(PurchaseOrderRequestDTO purchaseOrderRequestDTO, List<Product> productList) {
         for (PurchaseOrderRequestDTO.ProductDTO product : purchaseOrderRequestDTO.getProducts()) {
-            if (stockService.findByProductId(product.getId()).getCurrentQuantity() > product.getQuantity()) {
+            if (stockService.findByProductId(product.getId()).getCurrentQuantity() >= product.getQuantity()) {
                 productList.add(productService.findById(product.getId()));
             }
         }
@@ -83,7 +83,6 @@ public class PurchaseOrderServiceImpl implements IPurcharseOrderService {
         return purchaseOrderRepository.findAll();
     }
 
-    //BUG - não esta salvando a lista de produto
     //TODO CHAMAR A GALERA PRA TENTAR ENTENDER ESSE RELACIONAMENTO!
     @Override
     public List<ProductResponseDTO> listAllProductsInOrder(Long idOrder) {
