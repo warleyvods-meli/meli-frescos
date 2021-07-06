@@ -78,22 +78,25 @@ public class PurchaseOrderServiceImpl implements IPurcharseOrderService {
         return purchaseOrderRepository.findById(id).orElseThrow(() -> new NotFoundException("not found"));
     }
 
-
     @Override
-    public List <PurchaseOrder> getAll() {
+    public List<PurchaseOrder> getAll() {
         return purchaseOrderRepository.findAll();
     }
 
+    //BUG - não esta salvando a lista de produto
+    //TODO CHAMAR A GALERA PRA TENTAR ENTENDER ESSE RELACIONAMENTO!
     @Override
     public List<ProductResponseDTO> listAllProductsInOrder(Long idOrder) {
         PurchaseOrder purchaseOrder = findById(idOrder);
         return INSTANCE.productListToDtoList(purchaseOrder.getProducts());
     }
 
+    //TODO FINALIZAR METODO!
     @Override
     public PurchaseOrder editOrder(Long id, PurchaseOrderRequestDTO purchaseOrderRequestDTO) {
         PurchaseOrder purchaseOrder = findById(id);
         savePurchaseOrder(purchaseOrderRequestDTO);
         return null;
     }
+
 }
