@@ -24,14 +24,12 @@ public class PurchaseOrderServiceImpl implements IPurcharseOrderService {
 
     private final PurchaseOrderRepository purchaseOrderRepository;
     private final IProductService productService;
-    private final IBuyerService buyerService;
     private final IStockService stockService;
 
     public PurchaseOrderServiceImpl(PurchaseOrderRepository purchaseOrderRepository, IProductService productService,
-                                    IBuyerService buyerService, IStockService stockService) {
+                                    IStockService stockService) {
         this.purchaseOrderRepository = purchaseOrderRepository;
         this.productService = productService;
-        this.buyerService = buyerService;
         this.stockService = stockService;
     }
 
@@ -39,7 +37,6 @@ public class PurchaseOrderServiceImpl implements IPurcharseOrderService {
     public PurchaseOrderResponseDTO savePurchaseOrder(PurchaseOrderRequestDTO purchaseOrderRequestDTO) {
         var purchaseOrder = PurchaseOrderMapper.INSTANCE.toPurchaseOrder(purchaseOrderRequestDTO);
         purchaseOrder.setDataOrder(LocalDate.now());
-        purchaseOrder.setBuyer(buyerService.findById(purchaseOrder.getBuyer().getId()));
 
         List<Product> productList = new ArrayList<>();
         validatedRequest(purchaseOrderRequestDTO, productList);
