@@ -7,7 +7,6 @@ import com.mercadolibre.dambetan01.mapper.PurchaseOrderMapper;
 import com.mercadolibre.dambetan01.model.Product;
 import com.mercadolibre.dambetan01.model.PurchaseOrder;
 import com.mercadolibre.dambetan01.repository.PurchaseOrderRepository;
-import com.mercadolibre.dambetan01.service.IBuyerService;
 import com.mercadolibre.dambetan01.service.IProductService;
 import com.mercadolibre.dambetan01.service.IPurcharseOrderService;
 import com.mercadolibre.dambetan01.service.IStockService;
@@ -25,17 +24,19 @@ public class PurchaseOrderServiceImpl implements IPurcharseOrderService {
     private final PurchaseOrderRepository purchaseOrderRepository;
     private final IProductService productService;
     private final IStockService stockService;
+    private final PurchaseOrderMapper purchaseOrderMapper;
 
     public PurchaseOrderServiceImpl(PurchaseOrderRepository purchaseOrderRepository, IProductService productService,
-                                    IStockService stockService) {
+                                    IStockService stockService, PurchaseOrderMapper purchaseOrderMapper) {
         this.purchaseOrderRepository = purchaseOrderRepository;
         this.productService = productService;
         this.stockService = stockService;
+        this.purchaseOrderMapper = purchaseOrderMapper;
     }
 
     @Override
     public PurchaseOrderResponseDTO savePurchaseOrder(PurchaseOrderRequestDTO purchaseOrderRequestDTO) {
-        var purchaseOrder = PurchaseOrderMapper.INSTANCE.toPurchaseOrder(purchaseOrderRequestDTO);
+        var purchaseOrder = purchaseOrderMapper.toPurchaseOrder(purchaseOrderRequestDTO);
         purchaseOrder.setDataOrder(LocalDate.now());
 
         List<Product> productList = new ArrayList<>();
