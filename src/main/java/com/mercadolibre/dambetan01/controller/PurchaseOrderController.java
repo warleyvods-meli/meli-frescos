@@ -4,7 +4,6 @@ import com.mercadolibre.dambetan01.dtos.ProductResponseDTO;
 import com.mercadolibre.dambetan01.dtos.request.PurchaseOrderRequestDTO;
 import com.mercadolibre.dambetan01.dtos.response.PurchaseOrderResponseDTO;
 import com.mercadolibre.dambetan01.enums.StorageType;
-import com.mercadolibre.dambetan01.model.Product;
 import com.mercadolibre.dambetan01.model.PurchaseOrder;
 import com.mercadolibre.dambetan01.service.IProductService;
 import com.mercadolibre.dambetan01.service.IPurcharseOrderService;

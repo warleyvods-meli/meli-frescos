@@ -80,7 +80,6 @@ public class PurchaseOrderServiceImpl implements IPurcharseOrderService {
         return purchaseOrderRepository.findAll();
     }
 
-    //TODO CHAMAR A GALERA PRA TENTAR ENTENDER ESSE RELACIONAMENTO!
     @Override
     public List<ProductResponseDTO> listAllProductsInOrder(Long idOrder) {
         var purchaseOrder = findById(idOrder);
