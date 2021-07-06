@@ -1,12 +1,13 @@
 package com.mercadolibre.dambetan01.controller;
 
+import com.mercadolibre.dambetan01.dtos.ProductResponseDTO;
 import com.mercadolibre.dambetan01.dtos.request.PurchaseOrderRequestDTO;
 import com.mercadolibre.dambetan01.dtos.response.PurchaseOrderResponseDTO;
+import com.mercadolibre.dambetan01.enums.StorageType;
 import com.mercadolibre.dambetan01.model.Product;
 import com.mercadolibre.dambetan01.model.PurchaseOrder;
+import com.mercadolibre.dambetan01.service.IProductService;
 import com.mercadolibre.dambetan01.service.IPurcharseOrderService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,16 +16,17 @@ import java.util.List;
 @RestController
 public class PurchaseOrderController {
 
-
+    private final IProductService productService;
     private final IPurcharseOrderService purchaseOrderService;
 
-    public PurchaseOrderController(IPurcharseOrderService purchaseOrderService) {
+    public PurchaseOrderController(IProductService productService, IPurcharseOrderService purchaseOrderService) {
+        this.productService = productService;
         this.purchaseOrderService = purchaseOrderService;
     }
 
     @GetMapping
-    public List<Product> listAllFreshProduct() {
-        return null;
+    public List<ProductResponseDTO> listAllFreshProduct(@RequestParam StorageType storageType) {
+        return productService.findProductsCategory(storageType);
     }
 
     @PostMapping("/orders")
@@ -34,7 +36,7 @@ public class PurchaseOrderController {
 
     @GetMapping("/orders/{idOrder}")
     public List<Product> listAllProductsInOrder(@PathVariable Long idOrder) {
-        return null ;
+        return null;
     }
 
     @GetMapping("/orders")

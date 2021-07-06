@@ -1,5 +1,7 @@
 package com.mercadolibre.dambetan01.service;
 
+import com.mercadolibre.dambetan01.dtos.ProductResponseDTO;
+import com.mercadolibre.dambetan01.enums.StorageType;
 import com.mercadolibre.dambetan01.model.Product;
 
 import java.util.List;
@@ -11,4 +13,6 @@ public interface IProductService {
     Product findById(Long id);
 
     List<Product> getAll();
+
+    List<ProductResponseDTO> findProductsCategory(StorageType storageType);
 }

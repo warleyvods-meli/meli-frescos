@@ -24,6 +24,7 @@ INSERT INTO buyer(id, email, name, password, user_type) VALUES (2, 'buyer2@email
 
 --PRODUCT
 INSERT INTO product(id, category, product_name, seller_id, price) VALUES(1, 'FROZEN', 'Carne File Mignon', 1, 10);
+INSERT INTO product(id, category, product_name, seller_id, price) VALUES(4, 'FROZEN', 'Peixe Bacalhau', 1, 15.5);
 INSERT INTO product(id, category, product_name, seller_id, price) VALUES(2, 'AIRY', 'Repolho do mato', 2, 10);
 INSERT INTO product(id, category, product_name, seller_id, price) VALUES(3, 'CHILLED', 'Frutas', 2, 10);
 
