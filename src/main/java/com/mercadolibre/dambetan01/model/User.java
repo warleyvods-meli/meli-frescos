@@ -2,6 +2,7 @@ package com.mercadolibre.dambetan01.model;
 
 import com.mercadolibre.dambetan01.enums.UserType;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,7 @@ import javax.validation.constraints.Email;
 @NoArgsConstructor
 @AllArgsConstructor
 @MappedSuperclass
+@Builder
 public class User {
 
     private String name;
