@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -26,5 +27,8 @@ public class Section {
 
     @ManyToOne
     private Warehouse warehouse;
+
+    @OneToMany(mappedBy = "section")
+    private List<Stock> stockList;
 
 }

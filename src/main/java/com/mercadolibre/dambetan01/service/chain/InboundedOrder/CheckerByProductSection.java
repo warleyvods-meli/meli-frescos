@@ -1,10 +1,8 @@
 package com.mercadolibre.dambetan01.service.chain.InboundedOrder;
 
-import com.mercadolibre.dambetan01.exceptions.BadRequestException;
+import com.mercadolibre.dambetan01.exceptions.error.BadRequestException;
 import com.mercadolibre.dambetan01.model.InboundOrder;
 import com.mercadolibre.dambetan01.model.Product;
-import com.mercadolibre.dambetan01.model.Stock;
-import com.mercadolibre.dambetan01.model.Warehouse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +22,11 @@ public class CheckerByProductSection extends InboundOrderChecker{
         order.getBatchStock().forEach(stock -> products.add(stock.getProduct()));
         var notMatchProducts = products
                 .stream()
-                .filter(product -> !product.getCategory().getTemperature().equals(order.getSection().getSectionName().getTemperature()));
-        if (notMatchProducts.count() > 0) {
+                .filter(product -> !product.getCategory().getTemperature().equals(order.getSection().getSectionName().getTemperature())).count();
+        if (notMatchProducts > 0L) {
             throw new BadRequestException("there are products incompatible with the section");
         }
-        return true;
+        return nextChecker.verify(order);
     }
 }
 //TODO rever a regra de temperatura do produto, pois o assert está no stock

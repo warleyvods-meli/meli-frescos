@@ -26,6 +26,8 @@
         <junit-jupiter.version>5.7.0</junit-jupiter.version>
         <junit.platform.version>1.7.0</junit.platform.version>
         <springdoc.version>1.5.2</springdoc.version>
+        <enforcer.skip>true</enforcer.skip>
+
     </properties>
 
     <repositories>
@@ -49,9 +51,8 @@
                     <forkCount>1</forkCount>
                     <reuseForks>true</reuseForks>
                     <!--suppress UnresolvedMavenProperty -->
-
-                    <useFile>false</useFile>
                     <argLine>${argLine} -Xmx1g -Xms1g</argLine>
+                    <useFile>false</useFile>
                     <trimStackTrace>false</trimStackTrace>
                     <redirectTestOutputToFile>false</redirectTestOutputToFile>
                     <useSystemClassLoader>true</useSystemClassLoader>
@@ -94,7 +95,7 @@
                 <!-- </configuration> -->
             </plugin>
 
-            <!--<plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <executions>
@@ -116,7 +117,7 @@
                         <DependencyConvergence/>
                     </rules>
                 </configuration>
-            </plugin>-->
+            </plugin>
 
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -197,7 +198,6 @@
 
     <dependencyManagement>
         <dependencies>
-
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
@@ -509,7 +509,11 @@
         <!-- ___________________________________________________ -->
         <!-- _______________ Validación de Datos _______________ -->
         <!-- jackson propiedades JSON -->
-
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.12.3</version>
+        </dependency>
 
         <!-- conversion (ENTITY a  DTO) y conversion (DTO a ENTITY) -->
         <dependency>

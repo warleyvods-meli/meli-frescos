@@ -1,12 +1,8 @@
 package com.mercadolibre.dambetan01.service.chain.InboundedOrder;
 
-import com.mercadolibre.dambetan01.exceptions.BadRequestException;
+import com.mercadolibre.dambetan01.exceptions.error.BadRequestException;
 import com.mercadolibre.dambetan01.model.InboundOrder;
-import com.mercadolibre.dambetan01.model.Product;
 import com.mercadolibre.dambetan01.model.Stock;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class CheckerBySectionSpace extends InboundOrderChecker{
 
@@ -23,6 +19,6 @@ public class CheckerBySectionSpace extends InboundOrderChecker{
         if(order.getSection().getCapacity() < neededSpace) {
             throw new BadRequestException("there is no more space in this section");
         }
-        return true;
+        return nextChecker.verify(order);
     }
 }

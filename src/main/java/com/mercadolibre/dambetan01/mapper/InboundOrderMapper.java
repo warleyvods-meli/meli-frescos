@@ -4,7 +4,7 @@ import com.mercadolibre.dambetan01.dtos.request.InboundOrderRequest;
 import com.mercadolibre.dambetan01.dtos.request.SectionRequest;
 import com.mercadolibre.dambetan01.dtos.request.StockRequest;
 import com.mercadolibre.dambetan01.dtos.response.InboundOrderResponse;
-import com.mercadolibre.dambetan01.exceptions.BadRequestException;
+import com.mercadolibre.dambetan01.exceptions.error.BadRequestException;
 import com.mercadolibre.dambetan01.model.InboundOrder;
 import com.mercadolibre.dambetan01.model.Section;
 import com.mercadolibre.dambetan01.model.Stock;
@@ -36,14 +36,14 @@ public class InboundOrderMapper {
         return InboundOrder.builder()
                 .orderDate(request.getOrderDate())
                 .section(this.sectionRequestToSection(request.getSection()))
-                .batchStock(this.batchStockRequestToBatchStock(request.getBatchStock()))
+                .batchStock(this.batchStockRequestToBatchStock(request))
                 .orderNumber(request.getOrderNumber())
                 .build();
     }
 
-    private List<Stock> batchStockRequestToBatchStock(List<StockRequest> batchStockRequest) {
+    private List<Stock> batchStockRequestToBatchStock(InboundOrderRequest inboundOrderRequests) {
         List<Stock> stockList = new ArrayList <>();
-        batchStockRequest.forEach(bsr -> stockList.add(Stock.builder()
+        inboundOrderRequests.getBatchStock().forEach(bsr -> stockList.add(Stock.builder()
                 .currentTemperature(bsr.getCurrentTemperature())
                 .dueDate(bsr.getDueDate())
                 .manufacturingDate(bsr.getManufacturingDate())
@@ -54,6 +54,7 @@ public class InboundOrderMapper {
                 .manufacturingTime(bsr.getManufacturingTime())
                 .orderNumber(bsr.getOrderNumber())
                 .batchNumber(bsr.getBatchNumber())
+                .section(this.sectionRequestToSection(inboundOrderRequests.getSection()))
                 .build()
         ));
 
@@ -84,5 +85,15 @@ public class InboundOrderMapper {
                 .build()
         ));
         return InboundOrderResponse.builder().batchStock(stockRequestList).build();
+    }
+
+    public InboundOrder requestToEntityForPut(InboundOrderRequest request, int orderId) {
+        var savedOrder = inboundOrderService.findById((long)orderId);
+        var newOrder = requestToEntity(request);
+        savedOrder.setOrderDate(newOrder.getOrderDate());
+        savedOrder.setOrderNumber(newOrder.getOrderNumber());
+        savedOrder.setSection(newOrder.getSection());
+        savedOrder.setBatchStock(newOrder.getBatchStock());
+        return savedOrder;
     }
 }

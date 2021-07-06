@@ -1,12 +1,10 @@
 package com.mercadolibre.dambetan01.service.impl;
 
 import com.mercadolibre.dambetan01.dtos.response.UserResponseDTO;
-import com.mercadolibre.dambetan01.exceptions.ApiException;
-import com.mercadolibre.dambetan01.model.Account;
+import com.mercadolibre.dambetan01.exceptions.error.UnauthorizedException;
 import com.mercadolibre.dambetan01.model.Agent;
 import com.mercadolibre.dambetan01.model.Buyer;
 import com.mercadolibre.dambetan01.model.Seller;
-import com.mercadolibre.dambetan01.repository.AccountRepository;
 import com.mercadolibre.dambetan01.repository.AgentRepository;
 import com.mercadolibre.dambetan01.repository.BuyerRepository;
 import com.mercadolibre.dambetan01.repository.SellerRepository;
@@ -37,14 +35,14 @@ public class SessionServiceImpl implements ISessionService {
     }
 
     @Override
-    public UserResponseDTO login(String email, String password) throws ApiException {
+    public UserResponseDTO login(String email, String password) {
 
         if (sellerRepository.findByEmailAndPassword(email, password).isPresent()){
             return this.sellerLogin(email,password);
         }else if (buyerRepository.findByEmailAndPassword(email, password).isPresent()){
             return this.buyerLogin(email, password);
         }
-        throw new ApiException("404", "email or password is invalid", 404);
+        throw new UnauthorizedException("email or password is invalid");
     }
 
     private UserResponseDTO buyerLogin(String email, String password) {
@@ -78,7 +76,7 @@ public class SessionServiceImpl implements ISessionService {
             user.setUserType(agent.getPersonalData().getUserType().toString());
             return user;
         } else {
-            throw new ApiException("404", "email or password is invalid", 404);
+            throw new UnauthorizedException("email or password is invalid");
         }
     }
 

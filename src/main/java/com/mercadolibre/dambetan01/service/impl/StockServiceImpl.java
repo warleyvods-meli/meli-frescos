@@ -1,6 +1,6 @@
 package com.mercadolibre.dambetan01.service.impl;
 
-import com.mercadolibre.dambetan01.exceptions.NotFoundException;
+import com.mercadolibre.dambetan01.exceptions.error.NotFoundException;
 import com.mercadolibre.dambetan01.model.Stock;
 import com.mercadolibre.dambetan01.repository.StockRepository;
 import com.mercadolibre.dambetan01.service.IStockService;
@@ -26,6 +26,8 @@ public class StockServiceImpl implements IStockService {
     public Stock save(Stock stock) {
         return stockRepository.save(stock);
     }
+
+
 
     @Override
     public Stock findById(Long id) {
