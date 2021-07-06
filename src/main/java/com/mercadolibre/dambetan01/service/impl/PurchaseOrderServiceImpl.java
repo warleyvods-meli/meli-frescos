@@ -43,9 +43,23 @@ public class PurchaseOrderServiceImpl implements IPurcharseOrderService {
 
         List<Product> productList = new ArrayList<>();
         validatedRequest(purchaseOrderRequestDTO, productList);
-
         purchaseOrder.setProducts(productList);
-        return getPurchaseOrderResponseDTOBuilder(purchaseOrderRequestDTO, purchaseOrder).build();
+
+        var purchaseOrderSaved = purchaseOrderRepository.save(purchaseOrder);
+
+        PurchaseOrderResponseDTOBuilder builder = builder();
+
+        var sum = 0.0;
+        var totalPriceProduct = 0.0;
+        for (var product : purchaseOrderSaved.getProducts()) {
+            for (var purchaseOrderRequestDTOProduct : purchaseOrderRequestDTO.getProducts()) {
+                totalPriceProduct = product.getPrice() * purchaseOrderRequestDTOProduct.getQuantity();
+            }
+            sum += totalPriceProduct;
+        }
+
+
+        return builder.totalPrice(sum).build();
     }
 
     private void validatedRequest(PurchaseOrderRequestDTO purchaseOrderRequestDTO, List<Product> productList) {
@@ -54,23 +68,6 @@ public class PurchaseOrderServiceImpl implements IPurcharseOrderService {
                 productList.add(productService.findById(product.getId()));
             }
         }
-    }
-
-    private PurchaseOrderResponseDTOBuilder getPurchaseOrderResponseDTOBuilder(PurchaseOrderRequestDTO purchaseOrderRequestDTO,
-                                                                               PurchaseOrder purchaseOrder) {
-        PurchaseOrderResponseDTOBuilder builder = builder();
-
-        var totalPriceProduct = 0.0;
-        var sum = 0.0;
-        for (var product : purchaseOrderRepository.save(purchaseOrder).getProducts()) {
-            for (var purchaseOrderRequestDTOProduct : purchaseOrderRequestDTO.getProducts()) {
-                totalPriceProduct = product.getPrice() * purchaseOrderRequestDTOProduct.getQuantity();
-            }
-            sum += totalPriceProduct;
-        }
-
-        builder.totalPrice(sum);
-        return builder;
     }
 
     @Override
@@ -86,7 +83,7 @@ public class PurchaseOrderServiceImpl implements IPurcharseOrderService {
     //TODO CHAMAR A GALERA PRA TENTAR ENTENDER ESSE RELACIONAMENTO!
     @Override
     public List<ProductResponseDTO> listAllProductsInOrder(Long idOrder) {
-        PurchaseOrder purchaseOrder = findById(idOrder);
+        var purchaseOrder = findById(idOrder);
         return INSTANCE.productListToDtoList(purchaseOrder.getProducts());
     }
 
