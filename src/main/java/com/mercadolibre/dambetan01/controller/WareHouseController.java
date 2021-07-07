@@ -40,7 +40,7 @@ public class WareHouseController {
 
     @PutMapping("/fresh-products/inboundorder")
     @ResponseBody
-    public ResponseEntity <InboundOrderResponse> createInboundOrder(@RequestHeader(value = "orderId") int orderId,
+    public ResponseEntity <InboundOrderResponse> updateInboundOrder(@RequestHeader(value = "orderId") int orderId,
                                                                     @RequestHeader(value = "AgentId") int agentId,
                                                                     @RequestBody InboundOrderRequest request) {
         Agent agent = agentService.findById((long) agentId);
