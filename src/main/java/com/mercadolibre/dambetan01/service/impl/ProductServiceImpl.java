@@ -63,10 +63,10 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public ProductLocationResponseDTO getProductLocation(Long productId, Long warehouseId){
+    public ProductLocationResponseDTO getProductLocation(Long productId, Long warehouseId, String orderBy){
         Product product = productRepository.findById(productId).orElseThrow(() -> new NotFoundException("not found"));
         List<Stock> stockList = stockRepository.findAllById(this.getStocksIdList(product.getStockList()));
-        return ProductLocationResponseDTO.builder().productId(product.getId()).batchStock(this.getStockLocations(stockList, warehouseId)).build();
+        return ProductLocationResponseDTO.builder().productId(product.getId()).batchStock(this.getStockLocations(stockList, warehouseId, orderBy)).build();
     }
 
     private Iterable<Long> getStocksIdList(List<Stock> stockList){
@@ -85,20 +85,14 @@ public class ProductServiceImpl implements IProductService {
         return idList;
     }
 
-    private List<StockAndSectionResponseDTO> getStockLocations(List<Stock> stockList, Long warehouseId){
-        this.orderByStockDate(stockList);
+    private List<StockAndSectionResponseDTO> getStockLocations(List<Stock> stockList, Long warehouseId, String orderBy){
+        this.checkOrderBy(orderBy, stockList);
         List<StockAndSectionResponseDTO> stockAndSectionResponseDTOList = new ArrayList<>();
         for(Stock s : stockList){
             StockResponseDTO stockResponse = stockMapper.stockEntityToResponseDTO(s);
             Section section = sectionRepository.findById(s.getSection().getId()).orElseThrow(() -> new NotFoundException("Section not found."));
-            if(section.getWarehouse().getId().equals(warehouseId) || warehouseId.equals(0L)) {
-                SectionResponseDTO sectionResponse = sectionMapper.sectionEntityToResponseDTO(section);
-                StockAndSectionResponseDTO response =
-                        StockAndSectionResponseDTO.builder()
-                                .section(sectionResponse)
-                                .stock(stockResponse)
-                                .build();
-                stockAndSectionResponseDTOList.add(response);
+            if(section.getWarehouse().getId().equals(warehouseId) || warehouseId == null) {
+                stockAndSectionResponseDTOList.add(this.getStockAndSectionResponseDTO(section, stockResponse));
             }
         }
         return stockAndSectionResponseDTOList;
@@ -106,5 +100,32 @@ public class ProductServiceImpl implements IProductService {
 
    private void orderByStockDate(List<Stock> list){
        list.sort(Comparator.comparing(Stock::getDueDate));
+   }
+
+   private void orderByQuantity(List<Stock> list){
+       list.sort(Comparator.comparing(Stock::getCurrentQuantity));
+   }
+
+   private void orderStock(String orderBy, List<Stock> stockList){
+       if(orderBy.equals("C")){
+           this.orderByQuantity(stockList);
+       }
+       if(orderBy.equals("F")){
+           this.orderByStockDate(stockList);
+       }
+   }
+
+   private StockAndSectionResponseDTO getStockAndSectionResponseDTO(Section section, StockResponseDTO stockResponse){
+       SectionResponseDTO sectionResponse = sectionMapper.sectionEntityToResponseDTO(section);
+       return StockAndSectionResponseDTO.builder()
+                       .section(sectionResponse)
+                       .stock(stockResponse)
+                       .build();
+   }
+
+   private void checkOrderBy(String orderBy, List<Stock> stockList){
+       if(orderBy == null)
+           orderBy = "";
+       this.orderStock(orderBy, stockList);
    }
 }
