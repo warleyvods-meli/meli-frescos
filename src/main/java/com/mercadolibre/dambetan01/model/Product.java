@@ -31,7 +31,7 @@ public class Product {
     @ManyToMany(mappedBy = "products")
     private List<PurchaseOrder> purchaseOrder;
 
-    @OneToOne
-    private Stock stock;
+    @OneToMany(mappedBy = "product")
+    private List<Stock> stockList;
 
 }

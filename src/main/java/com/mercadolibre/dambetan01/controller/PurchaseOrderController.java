@@ -28,7 +28,7 @@ public class PurchaseOrderController {
 
     @GetMapping
     public ResponseEntity<List<ProductResponseDTO>> listAllFreshProduct() {
-        return new ResponseEntity<>(productService.getAll(), HttpStatus.OK);
+        return new ResponseEntity<>(productService.getAllProductsResponse(), HttpStatus.OK);
     }
 
     @GetMapping("/list")

@@ -25,7 +25,7 @@ public class BuilderInboundOrderTestHelper {
      agent.setWarehouse(warehouse);
      section.setWarehouse(warehouse);
      batch_stock.get(0).setSection(section);
-     batch_stock.get(0).getProduct().setStock(batch_stock.get(0));
+     batch_stock.get(0).getProduct().setStockList(batch_stock);
      section.setStockList(batch_stock);
      List<Section> sections = new ArrayList <>();
      sections.add(section);
@@ -124,7 +124,7 @@ public class BuilderInboundOrderTestHelper {
                         .productName("product")
                         .category(StorageType.FROZEN)
                         .price(10.0)
-                        .stock(null)
+                        .stockList(null)
                         .purchaseOrder(null)
                         .seller(null)
                         .build())
