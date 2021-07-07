@@ -31,7 +31,7 @@ public class PurchaseOrderController {
         return new ResponseEntity<>(productService.getAllProductsResponse(), HttpStatus.OK);
     }
 
-    @GetMapping("/list")
+    @GetMapping("admin/list")
     public ResponseEntity<List<ProductResponseDTO>> listAllFreshProductFromCategory(@RequestParam StorageType storageType) {
         return new ResponseEntity<>(productService.findProductsCategory(storageType), HttpStatus.OK);
     }
