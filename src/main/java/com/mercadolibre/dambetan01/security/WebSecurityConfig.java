@@ -28,10 +28,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests().antMatchers(HttpMethod.GET, LOGAR).permitAll()
-                .antMatchers("/*/protected/**").hasRole("USER")
-                .antMatchers("/*/admin/**").hasRole("ADMIN")
+                .antMatchers("/**/admin/**").hasRole("ADMIN")
+                .antMatchers("/**/agent/**").hasRole("AGENT")
+                .antMatchers("/**/seller/**").hasRole("SELLER")
+                .antMatchers("/**/buyer/**").hasRole("BUYER")
+                .antMatchers(HttpMethod.GET, "/ping").permitAll()
+                .antMatchers(HttpMethod.GET, "/v3/api-docs").permitAll()
+                .antMatchers(HttpMethod.GET, "/fake").permitAll()
                 .antMatchers("/*/actuator/**").permitAll()
-                .anyRequest().authenticated()
+//                .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager(), usuarioRepository))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager(), customUserDetailService));

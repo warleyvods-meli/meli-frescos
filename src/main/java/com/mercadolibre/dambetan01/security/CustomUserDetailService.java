@@ -29,9 +29,22 @@ public class CustomUserDetailService implements UserDetailsService {
         Account usuario = Optional.ofNullable(accountRepository.findByUsername(login).get())
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario não encontrado!"));
 
-        List<GrantedAuthority> authorityListAdmin = AuthorityUtils.createAuthorityList("ROLE_USER", "ROLE_ADMIN");
+        List<GrantedAuthority> authorityListAdmin = AuthorityUtils.createAuthorityList("ROLE_USER", "ROLE_ADMIN", "ROLE_BUYER", "ROLE_SELLER", "ROLE_AGENT");
         List<GrantedAuthority> authorityListUser = AuthorityUtils.createAuthorityList("ROLE_USER");
+        List<GrantedAuthority> authorityListBuyer = AuthorityUtils.createAuthorityList("ROLE_BUYER");
+        List<GrantedAuthority> authorityListSeller = AuthorityUtils.createAuthorityList("ROLE_SELLER");
+        List<GrantedAuthority> authorityListAgent = AuthorityUtils.createAuthorityList("ROLE_AGENT");
 
-        return new User(usuario.getUsername(), usuario.getPassword(), usuario.isAdmin() ? authorityListAdmin : authorityListUser);
+        if (usuario.isAdmin()) {
+            return new User(usuario.getUsername(), usuario.getPassword(), authorityListAdmin);
+        } else if (usuario.isAgent()) {
+            return new User(usuario.getUsername(), usuario.getPassword(), authorityListAgent);
+        } else if (usuario.isBuyer()) {
+            return new User(usuario.getUsername(), usuario.getPassword(), authorityListBuyer);
+        } else if (usuario.isSeller()) {
+            return new User(usuario.getUsername(), usuario.getPassword(), authorityListSeller);
+        }
+
+        return null;
     }
 }

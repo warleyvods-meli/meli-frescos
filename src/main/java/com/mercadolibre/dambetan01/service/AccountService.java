@@ -27,6 +27,9 @@ public class AccountService {
                 account.setUsername("meliadmin");
                 account.setPassword(new BCryptPasswordEncoder().encode("123"));
                 account.setAdmin(true);
+                account.setAgent(false);
+                account.setBuyer(false);
+                account.setSeller(false);
                 accountRepository.save(account);
             }
         } catch (Exception e) {
@@ -34,14 +37,53 @@ public class AccountService {
         }
     }
 
-    public void inserirUsuarioUser() {
+    public void inserirUsuarioSeller() {
         try{
-            if (accountRepository.findByUsername("meliuser").isEmpty()) {
+            if (accountRepository.findByUsername("meliseller").isEmpty()) {
                 log.debug("Usuario não encontrador, criando usuario");
                 Account account = new Account();
-                account.setUsername("meliuser");
+                account.setUsername("meliseller");
                 account.setPassword(new BCryptPasswordEncoder().encode("123"));
-                account.setAdmin(true);
+                account.setAdmin(false);
+                account.setAgent(false);
+                account.setBuyer(false);
+                account.setSeller(true);
+                accountRepository.save(account);
+            }
+        } catch (Exception e) {
+            log.debug("Não Encontrado");
+        }
+    }
+
+    public void inserirUsuarioBuyer() {
+        try{
+            if (accountRepository.findByUsername("melibuyer").isEmpty()) {
+                log.debug("Usuario não encontrador, criando usuario");
+                Account account = new Account();
+                account.setUsername("melibuyer");
+                account.setPassword(new BCryptPasswordEncoder().encode("123"));
+                account.setAdmin(false);
+                account.setAgent(false);
+                account.setBuyer(true);
+                account.setSeller(false);
+                accountRepository.save(account);
+            }
+        } catch (Exception e) {
+            log.debug("Não Encontrado");
+        }
+    }
+
+    public void inserirUsuarioAgent() {
+        try{
+            if (accountRepository.findByUsername("meliagent").isEmpty()) {
+                log.debug("Usuario não encontrador, criando usuario");
+                Account account = new Account();
+                account.setUsername("meliagent");
+                account.setPassword(new BCryptPasswordEncoder().encode("123"));
+                account.setAdmin(false);
+                account.setAgent(true);
+                account.setBuyer(false);
+                account.setSeller(false);
                 accountRepository.save(account);
             }
         } catch (Exception e) {

@@ -25,7 +25,9 @@ public class Application {
 	InitializingBean sendDataBase() {
 		return () -> {
 			accountService.inserirUsuarioAdmin();
-			accountService.inserirUsuarioUser();
+			accountService.inserirUsuarioSeller();
+			accountService.inserirUsuarioAgent();
+			accountService.inserirUsuarioBuyer();
 		};
 	}
 
