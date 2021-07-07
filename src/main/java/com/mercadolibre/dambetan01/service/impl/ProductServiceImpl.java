@@ -20,6 +20,7 @@ import com.mercadolibre.dambetan01.service.IProductService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -66,7 +67,6 @@ public class ProductServiceImpl implements IProductService {
         Product product = productRepository.findById(productId).orElseThrow(() -> new NotFoundException("not found"));
         List<Stock> stockList = stockRepository.findAllById(this.getStocksIdList(product.getStockList()));
         return ProductLocationResponseDTO.builder().productId(product.getId()).batchStock(this.getStockLocations(stockList, warehouseId)).build();
-
     }
 
     private Iterable<Long> getStocksIdList(List<Stock> stockList){
@@ -86,6 +86,7 @@ public class ProductServiceImpl implements IProductService {
     }
 
     private List<StockAndSectionResponseDTO> getStockLocations(List<Stock> stockList, Long warehouseId){
+        this.orderByStockDate(stockList);
         List<StockAndSectionResponseDTO> stockAndSectionResponseDTOList = new ArrayList<>();
         for(Stock s : stockList){
             StockResponseDTO stockResponse = stockMapper.stockEntityToResponseDTO(s);
@@ -103,17 +104,7 @@ public class ProductServiceImpl implements IProductService {
         return stockAndSectionResponseDTOList;
     }
 
-
-
-
-
-
-    /*private Section getProductSection(Product productId){
-
-    }
-
-    private Stock getProductStock(){
-
-    }*/
-
+   private void orderByStockDate(List<Stock> list){
+       list.sort(Comparator.comparing(Stock::getDueDate));
+   }
 }
