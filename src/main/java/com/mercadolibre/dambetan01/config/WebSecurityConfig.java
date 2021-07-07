@@ -22,11 +22,11 @@ import static com.mercadolibre.dambetan01.security.SecurityConstants.LOGAR;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomUserDetailService customUserDetailService;
-    private final AccountRepository usuarioRepository;
+    private final AccountRepository accountRepository;
 
-    public WebSecurityConfig(CustomUserDetailService customUserDetailService, AccountRepository usuarioRepository) {
+    public WebSecurityConfig(CustomUserDetailService customUserDetailService, AccountRepository accountRepository) {
         this.customUserDetailService = customUserDetailService;
-        this.usuarioRepository = usuarioRepository;
+        this.accountRepository = accountRepository;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
 
                 .and()
-                .addFilter(new JWTAuthenticationFilter(authenticationManager(), usuarioRepository))
+                .addFilter(new JWTAuthenticationFilter(authenticationManager(), accountRepository))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager(), customUserDetailService));
     }
 

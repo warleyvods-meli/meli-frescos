@@ -28,11 +28,11 @@ import static com.mercadolibre.dambetan01.security.SecurityConstants.*;
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
-    private final AccountRepository usuarioRepository;
+    private final AccountRepository accountRepository;
 
-    public JWTAuthenticationFilter(AuthenticationManager authenticationManager, AccountRepository usuarioRepository) {
+    public JWTAuthenticationFilter(AuthenticationManager authenticationManager, AccountRepository accountRepository) {
         this.authenticationManager = authenticationManager;
-        this.usuarioRepository = usuarioRepository;
+        this.accountRepository = accountRepository;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) {
         String login = (((User) authResult.getPrincipal()).getUsername());
 
-        Account user = usuarioRepository.findByUsername(login).orElseThrow(() -> new NotFoundException("User not found!"));
+        Account user = accountRepository.findByUsername(login).orElseThrow(() -> new NotFoundException("User not found!"));
 
         String token = Jwts.builder()
                 .claim("id", user.getId())
