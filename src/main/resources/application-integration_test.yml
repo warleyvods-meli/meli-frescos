@@ -9,4 +9,8 @@ spring:
       enabled: true
       path: /h2-console
   jpa:
+    show-sql: true
+    hibernate:
+      sql: debug
+      ddl-auto: create
     database-platform: org.hibernate.dialect.H2Dialect
