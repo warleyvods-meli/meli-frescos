@@ -1,6 +1,7 @@
 package com.mercadolibre.dambetan01.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mercadolibre.dambetan01.exceptions.error.NotFoundException;
 import com.mercadolibre.dambetan01.model.Account;
 import com.mercadolibre.dambetan01.repository.AccountRepository;
 import io.jsonwebtoken.Jwts;
@@ -27,7 +28,6 @@ import static com.mercadolibre.dambetan01.security.SecurityConstants.*;
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
-
     private final AccountRepository usuarioRepository;
 
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager, AccountRepository usuarioRepository) {
@@ -38,10 +38,10 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
         try {
-            Account usuario = new ObjectMapper().readValue(request.getInputStream(), Account.class);
-            return this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(usuario.getUsername(), usuario.getPassword()));
+            Account user = new ObjectMapper().readValue(request.getInputStream(), Account.class);
+            return this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
         } catch (IOException e) {
-            log.info("Erro na autenticação");
+            log.info("Auth Error!");
             return null;
         }
     }
@@ -51,14 +51,10 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) {
         String login = (((User) authResult.getPrincipal()).getUsername());
 
-        Account usuario = usuarioRepository.findByUsername(login).get();
-
-//        if (!usuario.isAtivo()) {
-//            throw new UsuarioDesativadoException("Usuario Desativado!");
-//        }
+        Account user = usuarioRepository.findByUsername(login).orElseThrow(() -> new NotFoundException("User not found!"));
 
         String token = Jwts.builder()
-                .claim("id", usuario.getId())
+                .claim("id", user.getId())
                 .setSubject(login)
                 .claim("authorities", authResult.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))

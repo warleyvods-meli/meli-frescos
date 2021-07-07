@@ -19,9 +19,7 @@ import static com.mercadolibre.dambetan01.security.SecurityConstants.*;
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
     private final CustomUserDetailService customUserDetailService;
-
     private static String tokenHeader;
-
 
     public JWTAuthorizationFilter(AuthenticationManager authenticationManager, CustomUserDetailService customUserDetailService) {
         super(authenticationManager);
@@ -41,7 +39,6 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
         UsernamePasswordAuthenticationToken authenticationToken = getAuthenticationToken(request);
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         chain.doFilter(request, response);
-
     }
 
     private UsernamePasswordAuthenticationToken getAuthenticationToken(HttpServletRequest request) {
@@ -50,12 +47,14 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
         if (token == null) {
             return null;
         }
+
         String username = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token.replace(TOKEN_PREFIX, "")).getBody().getSubject();
-        UserDetails userDetails = customUserDetailService.loadUserByUsername(username);
+        var userDetails = customUserDetailService.loadUserByUsername(username);
         return username != null ? new UsernamePasswordAuthenticationToken(username, null, userDetails.getAuthorities()) : null;
     }
 
-    public static String usuarioLogado() {
+
+    public static String loggedUser() {
         String token = tokenHeader;
 
         if (token == null) {

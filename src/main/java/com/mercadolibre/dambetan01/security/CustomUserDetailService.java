@@ -12,7 +12,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class CustomUserDetailService implements UserDetailsService {
@@ -26,11 +25,11 @@ public class CustomUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) {
-        Account usuario = Optional.ofNullable(accountRepository.findByUsername(login).get())
+        Account usuario = accountRepository.findByUsername(login)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario não encontrado!"));
 
         List<GrantedAuthority> authorityListAdmin = AuthorityUtils.createAuthorityList("ROLE_USER", "ROLE_ADMIN", "ROLE_BUYER", "ROLE_SELLER", "ROLE_AGENT");
-        List<GrantedAuthority> authorityListUser = AuthorityUtils.createAuthorityList("ROLE_USER");
+//        List<GrantedAuthority> authorityListUser = AuthorityUtils.createAuthorityList("ROLE_USER");
         List<GrantedAuthority> authorityListBuyer = AuthorityUtils.createAuthorityList("ROLE_BUYER");
         List<GrantedAuthority> authorityListSeller = AuthorityUtils.createAuthorityList("ROLE_SELLER");
         List<GrantedAuthority> authorityListAgent = AuthorityUtils.createAuthorityList("ROLE_AGENT");
