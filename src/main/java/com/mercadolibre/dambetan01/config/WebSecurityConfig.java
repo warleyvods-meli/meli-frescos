@@ -1,6 +1,9 @@
-package com.mercadolibre.dambetan01.security;
+package com.mercadolibre.dambetan01.config;
 
 import com.mercadolibre.dambetan01.repository.AccountRepository;
+import com.mercadolibre.dambetan01.security.CustomUserDetailService;
+import com.mercadolibre.dambetan01.security.JWTAuthenticationFilter;
+import com.mercadolibre.dambetan01.security.JWTAuthorizationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -44,7 +47,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/v3/api-docs").permitAll()
                 .antMatchers(HttpMethod.GET, "/fake").permitAll()
                 .antMatchers("/*/actuator/**").permitAll()
-                .anyRequest().authenticated() // <- Uncomment pra funcionar
+
+                .anyRequest().authenticated()
+
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager(), usuarioRepository))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager(), customUserDetailService));
@@ -54,10 +59,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(customUserDetailService).passwordEncoder(new BCryptPasswordEncoder());
     }
-
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        web.ignoring().antMatchers("/**");
-//    }
 
 }
