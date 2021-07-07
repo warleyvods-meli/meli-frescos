@@ -20,6 +20,7 @@ public class Account {
     private Long id;
     private String username, password;
     private Integer rol;
+    private boolean admin;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_country_house_fk", nullable = false)

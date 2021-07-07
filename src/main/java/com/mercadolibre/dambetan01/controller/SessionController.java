@@ -1,6 +1,7 @@
 package com.mercadolibre.dambetan01.controller;
 
 import com.mercadolibre.dambetan01.dtos.request.UserRequestDTO;
+import com.mercadolibre.dambetan01.dtos.response.AccountResponseDTO;
 import com.mercadolibre.dambetan01.dtos.response.UserResponseDTO;
 import com.mercadolibre.dambetan01.service.ISessionService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -23,7 +24,7 @@ public class SessionController {
     }
 
     @PostMapping("sign-in")
-    public UserResponseDTO login(@Validated @RequestBody UserRequestDTO request) throws NotFoundException {
+    public AccountResponseDTO login(@Validated @RequestBody UserRequestDTO request) throws NotFoundException {
         return service.login(request.getEmail(), request.getPassword());
     }
 
