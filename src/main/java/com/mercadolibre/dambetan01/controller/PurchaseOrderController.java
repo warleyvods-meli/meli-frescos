@@ -7,6 +7,7 @@ import com.mercadolibre.dambetan01.enums.StorageType;
 import com.mercadolibre.dambetan01.model.PurchaseOrder;
 import com.mercadolibre.dambetan01.service.IProductService;
 import com.mercadolibre.dambetan01.service.IPurcharseOrderService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+@SecurityRequirement(name = "bearerAuth")
 @RequestMapping("/api/v1/fresh-products")
 @RestController
 public class PurchaseOrderController {
