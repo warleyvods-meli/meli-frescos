@@ -16,17 +16,13 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/fresh-products-location/{productId}")
+    @GetMapping("/fresh-products-location/")
     @ResponseBody
-    public ProductLocationResponseDTO getProductLocation(@PathVariable Long productId){
-       return productService.getProductLocation(productId, 0L);
+    public ProductLocationResponseDTO getProductLocation(@RequestParam Long productId, @RequestParam(required = false) Long warehouseId,
+                                                         @RequestParam(required = false) String orderBy){
+        System.out.println(warehouseId);
+        return productService.getProductLocation(productId, warehouseId, orderBy);
 
     }
 
-    @GetMapping("/fresh-products-location/{productId}/{warehouseId}")
-    @ResponseBody
-    public ProductLocationResponseDTO getProductLocation(@PathVariable Long productId, @PathVariable Long warehouseId){
-        return productService.getProductLocation(productId, warehouseId);
-
-    }
 }
