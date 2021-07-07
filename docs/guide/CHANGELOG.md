@@ -84,6 +84,7 @@ Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 
 ### Added
 - Implementação do Requisito US002 - Dia 1: COMO Representante do armazém, QUERO atualizar um lote de produtos do estoque.
+
   - Criação do diagrama de sequência US002: Caso o lote já exista e deva ser atualizado. Retorne o estoque atualizado com o código de status “201 CREATED”.
 
   ```mermaid sequenceDiagram
@@ -118,6 +119,8 @@ Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
   Controller ->>+ Agent: response inbound order updated 
   ``` 
 
+### Fixed
+    - Diagrama de Sequência do Requisito US002 - Dia 1
 ### Added
 - Implementação do Requisito 2 User Story - Dia 2: COMO comprador, QUERO adicionar produtos ao carrinho de compras do
   Marketplace PARA comprá-los, se desejar.
