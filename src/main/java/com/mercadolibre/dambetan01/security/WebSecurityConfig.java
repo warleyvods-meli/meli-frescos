@@ -18,10 +18,8 @@ import static com.mercadolibre.dambetan01.security.SecurityConstants.LOGAR;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomUserDetailService customUserDetailService;
-
     private final AccountRepository usuarioRepository;
 
-    @Autowired
     public WebSecurityConfig(CustomUserDetailService customUserDetailService, AccountRepository usuarioRepository) {
         this.customUserDetailService = customUserDetailService;
         this.usuarioRepository = usuarioRepository;
