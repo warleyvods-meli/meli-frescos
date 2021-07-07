@@ -33,4 +33,9 @@ public class StockServiceImpl implements IStockService {
     public Stock findById(Long id) {
         return stockRepository.findById(id).orElseThrow(()-> new NotFoundException("Stock "+id+ " not found."));
     }
+
+    @Override
+    public Stock findByProductId(Long productId) {
+        return stockRepository.findByProductId(productId);
+    }
 }

@@ -1,5 +1,6 @@
 package com.mercadolibre.dambetan01.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mercadolibre.dambetan01.enums.OrderStatus;
 import lombok.Data;
 
@@ -23,7 +24,11 @@ public class PurchaseOrder {
     @Enumerated(EnumType.STRING)
     public OrderStatus orderStatus;
 
-    @OneToMany(mappedBy = "purchaseOrder")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "purcharse_orders_product",
+            joinColumns = {@JoinColumn(name = "purcharse_orders_id")},
+            inverseJoinColumns = {@JoinColumn(name = "product_id")})
+    @JsonIgnore
     public List<Product> products;
 
 }
