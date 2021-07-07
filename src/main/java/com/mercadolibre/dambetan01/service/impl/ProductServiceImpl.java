@@ -4,9 +4,12 @@ import com.mercadolibre.dambetan01.dtos.response.ProductLocationResponseDTO;
 import com.mercadolibre.dambetan01.dtos.response.SectionResponseDTO;
 import com.mercadolibre.dambetan01.dtos.response.StockAndSectionResponseDTO;
 import com.mercadolibre.dambetan01.dtos.response.StockResponseDTO;
-import com.mercadolibre.dambetan01.exceptions.NotFoundException;
 import com.mercadolibre.dambetan01.mapper.SectionMapper;
 import com.mercadolibre.dambetan01.mapper.StockMapper;
+import com.mercadolibre.dambetan01.dtos.ProductResponseDTO;
+import com.mercadolibre.dambetan01.enums.StorageType;
+import com.mercadolibre.dambetan01.exceptions.error.NotFoundException;
+import com.mercadolibre.dambetan01.mapper.ProductMapper;
 import com.mercadolibre.dambetan01.model.Product;
 import com.mercadolibre.dambetan01.model.Section;
 import com.mercadolibre.dambetan01.model.Stock;
@@ -38,7 +41,6 @@ public class ProductServiceImpl implements IProductService {
         this.sectionMapper = sectionMapper;
     }
 
-
     @Override
     public Product save(Product product) {
         return productRepository.save(product);
@@ -50,8 +52,13 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public List <Product> getAll() {
-        return productRepository.findAll();
+    public List<ProductResponseDTO> getAllProductsResponse() {
+        return ProductMapper.INSTANCE.productListToDtoList(productRepository.findAll());
+    }
+
+    @Override
+    public List<ProductResponseDTO> findProductsCategory(StorageType storageType) {
+        return ProductMapper.INSTANCE.productListToDtoList(productRepository.findProductByCategory(storageType));
     }
 
     @Override

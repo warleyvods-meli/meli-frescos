@@ -12,4 +12,7 @@ public interface IStockService {
     Stock findById(Long id);
 
     List<Stock> getAll();
+
+    Stock findByProductId(Long productId);
+
 }

@@ -12,6 +12,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Product {
 
     @Id
@@ -27,12 +28,10 @@ public class Product {
     @ManyToOne
     private Seller seller;
 
-    @ManyToOne
-    private PurchaseOrder purchaseOrder;
+    @ManyToMany(mappedBy = "products")
+    private List<PurchaseOrder> purchaseOrder;
 
     @OneToMany(mappedBy = "product")
     private List<Stock> stockList;
-
-
 
 }

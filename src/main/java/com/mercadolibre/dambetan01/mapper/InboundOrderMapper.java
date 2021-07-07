@@ -4,7 +4,7 @@ import com.mercadolibre.dambetan01.dtos.request.InboundOrderRequest;
 import com.mercadolibre.dambetan01.dtos.request.SectionRequest;
 import com.mercadolibre.dambetan01.dtos.request.StockRequest;
 import com.mercadolibre.dambetan01.dtos.response.InboundOrderResponse;
-import com.mercadolibre.dambetan01.exceptions.BadRequestException;
+import com.mercadolibre.dambetan01.exceptions.error.BadRequestException;
 import com.mercadolibre.dambetan01.model.InboundOrder;
 import com.mercadolibre.dambetan01.model.Section;
 import com.mercadolibre.dambetan01.model.Stock;
