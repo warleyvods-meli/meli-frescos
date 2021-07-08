@@ -6,7 +6,6 @@ import com.mercadolibre.dambetan01.mapper.InboundOrderMapper;
 import com.mercadolibre.dambetan01.model.Agent;
 import com.mercadolibre.dambetan01.model.InboundOrder;
 import com.mercadolibre.dambetan01.service.IAgentService;
-import com.mercadolibre.dambetan01.service.IBuyerService;
 import com.mercadolibre.dambetan01.service.IInboundOrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,6 +49,5 @@ public class WareHouseController {
         InboundOrderResponse response = inboundOrderMapper.EntityToResponse(inboundOrderService.saveWithChild(validOrder));
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
-
 
 }

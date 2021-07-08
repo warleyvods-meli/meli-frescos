@@ -19,4 +19,5 @@ public interface IProductService {
     List<ProductResponseDTO> getAllProductsResponse();
 
     List<ProductResponseDTO> findProductsCategory(StorageType storageType);
+
 }

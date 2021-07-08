@@ -1,9 +1,11 @@
 package com.mercadolibre.dambetan01.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Data
@@ -20,7 +22,10 @@ public class Seller{
     @Embedded
     User personalData;
 
+    /*
     @OneToMany(mappedBy = "seller")
     private List<Product> productList;
+
+     */
 
 }

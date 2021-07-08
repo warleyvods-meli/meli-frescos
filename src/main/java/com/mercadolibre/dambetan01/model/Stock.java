@@ -1,11 +1,13 @@
 package com.mercadolibre.dambetan01.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name="stock")
@@ -32,7 +34,7 @@ public class Stock {
     private LocalDate dueDate;
     private int orderNumber;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Section section;
 
 }
