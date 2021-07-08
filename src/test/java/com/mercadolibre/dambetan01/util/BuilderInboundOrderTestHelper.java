@@ -26,7 +26,6 @@ public class BuilderInboundOrderTestHelper {
      section.setWarehouse(warehouse);
      batch_stock.get(0).setSection(section);
      batch_stock.get(0).getProduct().setStockList(batch_stock);
-     section.setStockList(batch_stock);
      List<Section> sections = new ArrayList <>();
      sections.add(section);
      List<Agent> agents = new ArrayList <>();
@@ -91,7 +90,6 @@ public class BuilderInboundOrderTestHelper {
                 .id(1L)
                 .sectionName(StorageType.FROZEN)
                 .capacity(100)
-                .stockList(null)
                 .warehouse(null)
                 .build();
     }
@@ -126,7 +124,7 @@ public class BuilderInboundOrderTestHelper {
                         .price(10.0)
                         .stockList(null)
                         .purchaseOrder(null)
-                        .seller(null)
+                        //.seller(null)
                         .build())
                 .build());
 

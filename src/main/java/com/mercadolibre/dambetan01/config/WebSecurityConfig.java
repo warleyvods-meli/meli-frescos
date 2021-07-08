@@ -42,14 +42,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**/agent/**").permitAll()
                 .antMatchers("/**/seller/**").permitAll()
                 .antMatchers("/**/buyer/**").permitAll()
-
                 .antMatchers(HttpMethod.GET, "/ping").permitAll()
                 .antMatchers(HttpMethod.GET, "/v3/api-docs").permitAll()
                 .antMatchers(HttpMethod.GET, "/fake").permitAll()
                 .antMatchers("/*/actuator/**").permitAll()
-
+                //.anyRequest().permitAll();
                 .anyRequest().authenticated()
-
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager(), accountRepository))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager(), customUserDetailService));

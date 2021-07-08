@@ -19,4 +19,5 @@ public interface IProductService {
     List<ProductResponseDTO> findProductsCategory(StorageType storageType);
 
     ProductLocationResponseDTO getProductLocation(Long productId, Long warehouseId, String orderBy);
+
 }
