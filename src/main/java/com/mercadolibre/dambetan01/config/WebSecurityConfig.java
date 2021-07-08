@@ -19,7 +19,7 @@ import static com.mercadolibre.dambetan01.security.SecurityConstants.LOGAR;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class    WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomUserDetailService customUserDetailService;
     private final AccountRepository accountRepository;
