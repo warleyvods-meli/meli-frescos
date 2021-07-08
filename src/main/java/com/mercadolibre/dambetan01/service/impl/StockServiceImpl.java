@@ -56,4 +56,17 @@ public class StockServiceImpl implements IStockService {
         return collect;
     }
 
+    @Override
+    public List<Stock> findStockFromSectionDueDateCategory(Long id, Long day, String category) {
+        Iterable<Long> stockListId = sectionRepository.findStockList(id);
+        List<Stock> stockList = stockRepository.findAllById(stockListId);
+        List<Stock> collect = stockList.stream()
+                .filter(cat -> cat.getProduct().getCategory().name().equalsIgnoreCase(category))
+                .filter(list -> list.getDueDate().isBefore(ChronoLocalDate.from(LocalDate.now().plusDays(day))))
+                .sorted(Comparator.comparing(Stock::getDueDate))
+                .collect(Collectors.toList());
+
+        return collect;
+    }
+
 }

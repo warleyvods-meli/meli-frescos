@@ -45,4 +45,15 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(listStock);
     }
 
+    @GetMapping("/fresh-products/due-date/list")
+    public ResponseEntity<List<StockDueDateResponseDTO>> getStockDueDateAndCategory(@RequestParam Long id_section,
+                                                                                    @RequestParam Long day,
+                                                                                    @RequestParam String category){
+        List<StockDueDateResponseDTO> listStock = new ArrayList<>();
+        var list = stockService.findStockFromSectionDueDateCategory(id_section, day, category);
+        list.forEach(l-> listStock.add(stockMapper.stockDueDateToResponseDTO(l)));
+
+        return ResponseEntity.status(HttpStatus.OK).body(listStock);
+    }
+
 }

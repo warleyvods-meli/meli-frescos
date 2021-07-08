@@ -16,4 +16,6 @@ public interface IStockService {
 
     List<Stock> findStockFromSectionDueDate(Long id, Long day);
 
+    List<Stock> findStockFromSectionDueDateCategory(Long id, Long day, String category);
+
 }
