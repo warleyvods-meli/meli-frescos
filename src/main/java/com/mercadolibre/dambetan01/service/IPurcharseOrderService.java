@@ -19,6 +19,6 @@ public interface IPurcharseOrderService {
 
     List<ProductResponseDTO> listAllProductsInOrder(Long idOrder);
 
-    PurchaseOrder editOrder(Long id, PurchaseOrderRequestDTO purchaseOrderRequestDTO);
+    PurchaseOrderResponseDTO editOrder(PurchaseOrderRequestDTO purchaseOrderRequestDTO);
 
 }

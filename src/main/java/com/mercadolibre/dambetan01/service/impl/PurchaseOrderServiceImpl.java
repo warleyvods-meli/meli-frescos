@@ -47,8 +47,6 @@ public class PurchaseOrderServiceImpl implements IPurcharseOrderService {
 
         var purchaseOrderSaved = purchaseOrderRepository.save(purchaseOrder);
 
-        PurchaseOrderResponseDTOBuilder builder = builder();
-
         var sum = 0.0;
         var totalPriceProduct = 0.0;
         for (var product : purchaseOrderSaved.getProducts()) {
@@ -58,8 +56,7 @@ public class PurchaseOrderServiceImpl implements IPurcharseOrderService {
             sum += totalPriceProduct;
         }
 
-
-        return builder.totalPrice(sum).build();
+        return PurchaseOrderResponseDTO.builder().totalPrice(sum).build();
     }
 
     private void validatedRequest(PurchaseOrderRequestDTO purchaseOrderRequestDTO, List<Product> productList) {
@@ -72,7 +69,7 @@ public class PurchaseOrderServiceImpl implements IPurcharseOrderService {
 
     @Override
     public PurchaseOrder findById(Long id) {
-        return purchaseOrderRepository.findById(id).orElseThrow(() -> new NotFoundException("not found"));
+        return purchaseOrderRepository.findById(id).orElseThrow(() -> new NotFoundException("Purchase Order not found!"));
     }
 
     @Override
@@ -86,12 +83,10 @@ public class PurchaseOrderServiceImpl implements IPurcharseOrderService {
         return INSTANCE.productListToDtoList(purchaseOrder.getProducts());
     }
 
-    //TODO FINALIZAR METODO!
     @Override
-    public PurchaseOrder editOrder(Long id, PurchaseOrderRequestDTO purchaseOrderRequestDTO) {
-        PurchaseOrder purchaseOrder = findById(id);
-        savePurchaseOrder(purchaseOrderRequestDTO);
-        return null;
+    public PurchaseOrderResponseDTO editOrder(PurchaseOrderRequestDTO purchaseOrderRequestDTO) {
+        findById(purchaseOrderRequestDTO.getId());
+        return savePurchaseOrder(purchaseOrderRequestDTO);
     }
 
 }

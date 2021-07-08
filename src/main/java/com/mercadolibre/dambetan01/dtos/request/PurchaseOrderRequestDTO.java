@@ -16,6 +16,9 @@ import java.util.List;
 @Builder
 public class PurchaseOrderRequestDTO {
 
+    @Schema(description = "Id Purchase Order", example = "1", required = true)
+    private Long id;
+
     @NotBlank
     @Schema(description = "Id from buyer", example = "1", required = true)
     private Long buyerId;

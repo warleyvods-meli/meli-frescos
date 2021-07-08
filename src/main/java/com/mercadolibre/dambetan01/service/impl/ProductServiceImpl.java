@@ -69,7 +69,7 @@ public class ProductServiceImpl implements IProductService {
         return ProductLocationResponseDTO.builder().productId(product.getId()).batchStock(this.getStockLocations(stockList, warehouseId, orderBy)).build();
     }
 
-    private Iterable<Long> getStocksIdList(List<Stock> stockList){
+    private Iterable<Long> getStocksIdList(List<Stock> stockList) {
         List<Long> idList = new ArrayList<>();
         for (Stock s : stockList){
             idList.add(s.getId());
