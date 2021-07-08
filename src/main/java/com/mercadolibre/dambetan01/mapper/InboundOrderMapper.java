@@ -20,13 +20,11 @@ import java.util.List;
 @Component
 public class InboundOrderMapper {
 
-    private final ModelMapper mapper;
     private final ISectionService sectionService;
     private final IProductService productServiceService;
     private final IInboundOrderService inboundOrderService;
 
-    public InboundOrderMapper(ModelMapper mapper, ISectionService sectionService, IProductService productServiceService, IInboundOrderService inboundOrderService) {
-        this.mapper = mapper;
+    public InboundOrderMapper(ISectionService sectionService, IProductService productServiceService, IInboundOrderService inboundOrderService) {
         this.sectionService = sectionService;
         this.productServiceService = productServiceService;
         this.inboundOrderService = inboundOrderService;
@@ -94,6 +92,7 @@ public class InboundOrderMapper {
         savedOrder.setOrderNumber(newOrder.getOrderNumber());
         savedOrder.setSection(newOrder.getSection());
         savedOrder.setBatchStock(newOrder.getBatchStock());
+        //TODO avaliar para cada item da lista
         return savedOrder;
     }
 }

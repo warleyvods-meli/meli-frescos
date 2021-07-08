@@ -25,28 +25,29 @@ public class PurchaseOrderController {
         this.purchaseOrderService = purchaseOrderService;
     }
 
-    @GetMapping("buyer/fresh-products")
+    @GetMapping("/fresh-products")
     public ResponseEntity<List<ProductResponseDTO>> listAllFreshProduct() {
         return new ResponseEntity<>(productService.getAllProductsResponse(), HttpStatus.OK);
     }
 
-    @GetMapping("buyer/fresh-products/list")
+    @GetMapping("/fresh-products/list")
     public ResponseEntity<List<ProductResponseDTO>> listAllFreshProductFromCategory(@RequestParam StorageType storageType) {
         return new ResponseEntity<>(productService.findProductsCategory(storageType), HttpStatus.OK);
     }
 
-    @PostMapping("buyer/fresh-products/orders")
+    //TODO avaliar post
+    @PostMapping("/fresh-products/orders")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<PurchaseOrderResponseDTO> registerOrder(@RequestBody PurchaseOrderRequestDTO purchaseOrderRequestDTO) {
         return new ResponseEntity<>(purchaseOrderService.savePurchaseOrder(purchaseOrderRequestDTO), HttpStatus.CREATED);
     }
 
-    @GetMapping("buyer/fresh-products/orders/find")
+    @GetMapping("/fresh-products/orders/find")
     public ResponseEntity<List<ProductResponseDTO>> listAllProductsInOrder(@RequestParam Long idOrder) {
         return new ResponseEntity<>(purchaseOrderService.listAllProductsInOrder(idOrder), HttpStatus.OK);
     }
 
-    @PutMapping("buyer/fresh-products/orders")
+    @PutMapping("/fresh-products/orders")
     public ResponseEntity<PurchaseOrderResponseDTO> editOrder(@RequestBody @Valid PurchaseOrderRequestDTO purchaseOrderRequestDTO) {
         return new ResponseEntity<>(purchaseOrderService.editOrder(purchaseOrderRequestDTO), HttpStatus.OK);
     }
