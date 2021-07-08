@@ -18,7 +18,9 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username, password;
+    private String name;
+    private String username;
+    private String password;
 
     private boolean admin;
     private boolean seller;
