@@ -14,10 +14,10 @@ public interface IProductService {
 
     Product findById(Long id);
 
-    ProductLocationResponseDTO getProductLocation(Long productId, Long warehouseId);
-
     List<ProductResponseDTO> getAllProductsResponse();
 
     List<ProductResponseDTO> findProductsCategory(StorageType storageType);
+
+    ProductLocationResponseDTO getProductLocation(Long productId, Long warehouseId, String orderBy);
 
 }

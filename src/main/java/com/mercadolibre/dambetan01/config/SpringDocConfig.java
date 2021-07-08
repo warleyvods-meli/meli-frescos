@@ -1,5 +1,7 @@
 package com.mercadolibre.dambetan01.config;
 
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
@@ -12,6 +14,7 @@ import static com.mercadolibre.dambetan01.util.ScopeUtils.isLocalScope;
 import static java.lang.String.format;
 
 @Configuration
+@SecurityScheme(name = "bearerAuth", type = SecuritySchemeType.HTTP, bearerFormat = "JWT", scheme = "bearer")
 public class SpringDocConfig {
 
 	@Bean

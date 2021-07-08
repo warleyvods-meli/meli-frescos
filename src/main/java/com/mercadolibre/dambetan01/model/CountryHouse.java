@@ -26,7 +26,7 @@ public class CountryHouse {
     @Unique
     private String country;
 
-    @OneToMany(mappedBy = "countryHouse")
-    private List<Account> accountsList;
+//    @OneToMany(mappedBy = "countryHouse")
+//    private List<Account> accountsList;
 
 }
