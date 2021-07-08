@@ -71,7 +71,6 @@ Buyer ->>+ Controller: request list of products alt is valid Service ->>+ Produc
 Buyer ->>+ Controller: request list of products by category alt is valid Service ->>+ ProductRepository: product exists? ProductRepository -->> Controller: list of products else not valid ProductRepository -->>- Controller: status code 404 end Controller ->>+ Buyer: response list of products by category  
 ```
 
-
 ### Added
 - Implementação do Requisito 2 US003 - Dia 2: Registre um pedido com a lista de produtos que compõem o  
   PurchaseOrder. Calcule o preço final e devolva-o junto com um código de status “201 CREATED”.  
@@ -88,8 +87,8 @@ Buyer ->>+ Controller: request create purchcase order with list of products alt 
 - Criação do diagrama de sequência Requisito 2 US004 - Dia 2. <br>
 
 ```mermaid sequenceDiagram  
-Buyer ->>+ Controller: request get list of products Controller ->>+ Service: Service ->>+ PurchaseOrderRepository: get list product from purchase order PurchaseOrderRepository -->>- Controller: list product from purchase order Controller ->>+ Buyer: response list of products
- ```
+Buyer ->>+ Controller: request get list of products Controller ->>+ Service: Service ->>+ PurchaseOrderRepository: get list product from purchase order PurchaseOrderRepository -->>- Controller: list product from purchase order Controller ->>+ Buyer: response list of products 
+```
 ### Added
 - Implementação do Requisito 2 US005 - Dia 2: Modifique o pedido existente. Que  
   seja do tipo carrinho para modificar. <br>  
@@ -97,14 +96,15 @@ Buyer ->>+ Controller: request get list of products Controller ->>+ Service: Ser
 - Criação do diagrama de sequência Requisito 2 US005 - Dia 2. <br>
 
 ```mermaid sequenceDiagram  
-Buyer ->>+ Controller: request put purchase order alt is valid Service ->>+ PurchaseRepository: purchase type cart? PurchaseRepository -->> Controller: purchase modified - status code 201 else not valid PurchaseRepository -->>- Controller: purchase not found - status code 404 end Controller ->>+ Buyer: response purchase order modified
- ```
+Buyer ->>+ Controller: request put purchase order alt is valid Service ->>+ PurchaseRepository: purchase type cart? PurchaseRepository -->> Controller: purchase modified - status code 201 else not valid PurchaseRepository -->>- Controller: purchase not found - status code 404 end Controller ->>+ Buyer: response purchase order modified 
+
+```
 ## Update - 08-07-2021
 
 
 ### Added
 - Implementação dos requisitos 3 e 4
 - implementação do Spring Security
-- geração do diagrama de classes: <br>
-<img src="https://github.com/warleyvods-meli/meli-frescos/blob/master/docs/guide/diagrams/class_diagram.png?raw=true" alt="CLASS_DIAGRAM" height="600" width="400">  
+- geração do diagrama de classes:
+  <img src="https://github.com/warleyvods-meli/meli-frescos/blob/master/docs/guide/diagrams/class_diagram.png?raw=true" alt="CLASS_DIAGRAM" height="600" width="400">  
 
