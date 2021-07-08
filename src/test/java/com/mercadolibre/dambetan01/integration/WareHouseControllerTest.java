@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
@@ -36,6 +37,7 @@ public class WareHouseControllerTest extends ControllerTest {
     private  IInboundOrderService inboundOrderService;
 
     @Test
+    @WithMockUser(username = "user", roles = {"ADMIN"})
     public void shouldCreateInboundOrder() throws Exception {
         var request = BuilderInboundOrderTestHelper.getInboundOrderRequest();
         request.getBatchStock().get(0).setProductId(3);
@@ -47,6 +49,7 @@ public class WareHouseControllerTest extends ControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "user", roles = {"ADMIN"})
     public void shouldUpdateInboundOrder() throws Exception {
         var request = BuilderInboundOrderTestHelper.getInboundOrderRequest();
         request.getBatchStock().get(0).setProductId(3);
@@ -58,6 +61,7 @@ public class WareHouseControllerTest extends ControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "user", roles = {"ADMIN"})
     public void shouldFailedCauseProductIsIncompatible() throws Exception {
         var request = BuilderInboundOrderTestHelper.getInboundOrderRequest();
         mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/fresh-products/inboundorder")
@@ -69,6 +73,7 @@ public class WareHouseControllerTest extends ControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "user", roles = {"ADMIN"})
     public void shouldFailedCauseAgentIsIncompatible() throws Exception {
         var request = BuilderInboundOrderTestHelper.getInboundOrderRequest();
         request.getBatchStock().get(0).setProductId(3);
@@ -81,6 +86,7 @@ public class WareHouseControllerTest extends ControllerTest {
     }
 
     @Test //TODO rever este teste, esta dando certo pelo motivo errado
+    @WithMockUser(username = "user", roles = {"ADMIN"})
     public void shouldFailedCauseSectionNoHaveSpace() throws Exception {
         var request = BuilderInboundOrderTestHelper.getInboundOrderRequest();
         request.getBatchStock().get(0).setProductId(2);
