@@ -7,8 +7,10 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.module.afterburner.AfterburnerModule;
 import com.mercadolibre.routing.RoutingFilter;
+
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
+
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,16 +24,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableAutoConfiguration
 public class SpringConfig implements WebMvcConfigurer {
 
-	@Bean
-	@Order(1)
-	public RoutingFilter getRoutingFilter() {
-		return new RoutingFilter();
-	}
+    @Bean
+    @Order(1)
+    public RoutingFilter getRoutingFilter() {
+        return new RoutingFilter();
+    }
 
-	private AfterburnerModule createAfterburnerModule() {
-		AfterburnerModule afterburnerModule = new AfterburnerModule();
+    private AfterburnerModule createAfterburnerModule() {
+        AfterburnerModule afterburnerModule = new AfterburnerModule();
 
-		afterburnerModule.setUseValueClassLoader(false);
-		return afterburnerModule;
-	}
+        afterburnerModule.setUseValueClassLoader(false);
+        return afterburnerModule;
+    }
 }

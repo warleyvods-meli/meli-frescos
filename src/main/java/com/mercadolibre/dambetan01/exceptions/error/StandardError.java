@@ -13,12 +13,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 public class StandardError {
+
     private String title;
     private int status;
     private String detail;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime timestamp;
     private String developerMessage;
-
 
 }

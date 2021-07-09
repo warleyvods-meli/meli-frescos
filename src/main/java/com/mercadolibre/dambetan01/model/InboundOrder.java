@@ -29,7 +29,6 @@ public class InboundOrder {
     @OneToOne
     private Agent agent;
 
-
     @ManyToOne
     @JoinColumn(name = "id_section_fk", nullable = false)
     private Section section;

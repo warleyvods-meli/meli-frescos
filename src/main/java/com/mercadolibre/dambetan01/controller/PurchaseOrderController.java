@@ -35,9 +35,7 @@ public class PurchaseOrderController {
         return new ResponseEntity<>(productService.findProductsCategory(storageType), HttpStatus.OK);
     }
 
-    //TODO avaliar post
     @PostMapping("/fresh-products/orders")
-    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<PurchaseOrderResponseDTO> registerOrder(@RequestBody PurchaseOrderRequestDTO purchaseOrderRequestDTO) {
         return new ResponseEntity<>(purchaseOrderService.savePurchaseOrder(purchaseOrderRequestDTO), HttpStatus.CREATED);
     }
@@ -48,7 +46,7 @@ public class PurchaseOrderController {
     }
 
     @PutMapping("/fresh-products/orders")
-    public ResponseEntity<PurchaseOrderResponseDTO> editOrder(@RequestBody @Valid PurchaseOrderRequestDTO purchaseOrderRequestDTO) {
+    public ResponseEntity<PurchaseOrderResponseDTO> editOrder(@RequestBody PurchaseOrderRequestDTO purchaseOrderRequestDTO) {
         return new ResponseEntity<>(purchaseOrderService.editOrder(purchaseOrderRequestDTO), HttpStatus.OK);
     }
 

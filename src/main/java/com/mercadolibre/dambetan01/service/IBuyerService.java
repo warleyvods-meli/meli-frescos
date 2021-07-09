@@ -5,9 +5,10 @@ import com.mercadolibre.dambetan01.model.Buyer;
 import java.util.List;
 
 public interface IBuyerService {
+
     Buyer save(Buyer buyer);
 
     Buyer findById(Long id);
 
-    List <Buyer> getAll();
+    List<Buyer> getAll();
 }

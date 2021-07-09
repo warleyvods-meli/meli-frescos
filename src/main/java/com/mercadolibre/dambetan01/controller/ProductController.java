@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@RequestMapping(path = "/api/v1")
 @RestController
+@RequestMapping(path = "/api/v1")
 public class ProductController {
 
     private final IProductService productService;
@@ -28,19 +28,18 @@ public class ProductController {
     }
 
     @GetMapping("/fresh-products/location/")
-    @ResponseBody
-    public ProductLocationResponseDTO getProductLocation(@RequestParam Long productId, @RequestParam(required = false) Long warehouseId,
-                                                         @RequestParam(required = false) String orderBy){
-        System.out.println(warehouseId);
+    public ProductLocationResponseDTO getProductLocation(@RequestParam Long productId,
+                                                         @RequestParam(required = false) Long warehouseId,
+                                                         @RequestParam(required = false) String orderBy) {
         return productService.getProductLocation(productId, warehouseId, orderBy);
 
     }
 
     @GetMapping("/fresh-products/due-date")
-    public ResponseEntity<List<StockDueDateResponseDTO>> getStockDueDate(@RequestParam Long id_section, @RequestParam Long day){
+    public ResponseEntity<List<StockDueDateResponseDTO>> getStockDueDate(@RequestParam Long id_section, @RequestParam Long day) {
         List<StockDueDateResponseDTO> listStock = new ArrayList<>();
         var list = stockService.findStockFromSectionDueDate(id_section, day);
-        list.forEach(l-> listStock.add(stockMapper.stockDueDateToResponseDTO(l)));
+        list.forEach(l -> listStock.add(stockMapper.stockDueDateToResponseDTO(l)));
 
         return ResponseEntity.status(HttpStatus.OK).body(listStock);
     }
@@ -48,10 +47,10 @@ public class ProductController {
     @GetMapping("/fresh-products/due-date/list")
     public ResponseEntity<List<StockDueDateResponseDTO>> getStockDueDateAndCategory(@RequestParam Long id_section,
                                                                                     @RequestParam Long day,
-                                                                                    @RequestParam String category){
+                                                                                    @RequestParam String category) {
         List<StockDueDateResponseDTO> listStock = new ArrayList<>();
         var list = stockService.findStockFromSectionDueDateCategory(id_section, day, category);
-        list.forEach(l-> listStock.add(stockMapper.stockDueDateToResponseDTO(l)));
+        list.forEach(l -> listStock.add(stockMapper.stockDueDateToResponseDTO(l)));
 
         return ResponseEntity.status(HttpStatus.OK).body(listStock);
     }

@@ -13,4 +13,5 @@ public class StockAndSectionResponseDTO {
 
     private StockResponseDTO stock;
     private SectionResponseDTO section;
+
 }

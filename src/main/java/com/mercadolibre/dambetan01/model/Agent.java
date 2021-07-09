@@ -17,7 +17,7 @@ public class Agent{
     private Long id;
 
     @Embedded
-    User personalData;
+    private User personalData;
 
     @ManyToOne
     private Warehouse warehouse;

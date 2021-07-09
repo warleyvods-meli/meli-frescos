@@ -11,10 +11,11 @@ import javax.validation.constraints.Email;
 
 
 @Data
+@Builder
+@Embeddable
+@MappedSuperclass
 @NoArgsConstructor
 @AllArgsConstructor
-@MappedSuperclass
-@Builder
 public class User {
 
     private String name;
@@ -25,4 +26,5 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private UserType userType;
+
 }
