@@ -3,7 +3,7 @@ package com.mercadolibre.dambetan01.service.chain.InboundedOrder;
 import com.mercadolibre.dambetan01.exceptions.error.BadRequestException;
 import com.mercadolibre.dambetan01.model.InboundOrder;
 
-public class CheckerByAgent extends InboundOrderChecker{
+public class CheckerByAgent extends InboundOrderChecker {
 
     public CheckerByAgent(InboundOrderChecker nextChecker) {
         super(nextChecker);
@@ -14,13 +14,13 @@ public class CheckerByAgent extends InboundOrderChecker{
      */
     @Override
     public boolean verify(InboundOrder order) {
-          var result = order.getSection().getWarehouse().getAgents()
-                  .stream()
-                  .anyMatch(agent -> agent.getPersonalData().getEmail().equals(order.getAgent().getPersonalData().getEmail()));
-          if (result) {
-              return nextChecker.verify(order);
-          }
-          throw new BadRequestException("Agent " + order.getAgent().getPersonalData().getName() +
-                  "does not belong to " + order.getSection().getWarehouse().getName() );
+        var result = order.getSection().getWarehouse().getAgents()
+                .stream()
+                .anyMatch(agent -> agent.getPersonalData().getEmail().equals(order.getAgent().getPersonalData().getEmail()));
+        if (result) {
+            return nextChecker.verify(order);
+        }
+        throw new BadRequestException("Agent " + order.getAgent().getPersonalData().getName() +
+                "does not belong to " + order.getSection().getWarehouse().getName());
     }
 }

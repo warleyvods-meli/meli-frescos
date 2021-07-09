@@ -12,4 +12,5 @@ public interface BuyerRepository extends JpaRepository<Buyer, Long> {
 
     @Query(value = "SELECT * FROM BUYER where BUYER.email=:username and BUYER.password=:password", nativeQuery = true)
     Optional <Buyer> findByEmailAndPassword(@Param("username") String username, @Param("password") String password);
+
 }

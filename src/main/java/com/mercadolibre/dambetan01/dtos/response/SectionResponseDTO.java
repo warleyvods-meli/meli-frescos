@@ -13,4 +13,5 @@ public class SectionResponseDTO {
 
     private Long sectionId;
     private Long warehouseId;
+
 }

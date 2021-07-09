@@ -18,4 +18,5 @@ public class StockDueDateResponseDTO {
     private String productType;
     private LocalDate dueDate;
     private int quantity;
+
 }

@@ -15,8 +15,6 @@ import java.util.List;
 public class ProductLocationResponseDTO {
 
     private Long productId;
-
     private List<StockAndSectionResponseDTO> batchStock;
-
 
 }

@@ -20,12 +20,6 @@ public class Seller{
     private Long id;
 
     @Embedded
-    User personalData;
-
-    /*
-    @OneToMany(mappedBy = "seller")
-    private List<Product> productList;
-
-     */
+    private User personalData;
 
 }

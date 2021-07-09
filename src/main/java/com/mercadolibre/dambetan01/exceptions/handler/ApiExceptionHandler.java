@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class ApiExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity <?> handleResourceNotFoundException(NotFoundException exception){
+    public ResponseEntity<?> handleResourceNotFoundException(NotFoundException exception) {
         var error = StandardError
                 .builder()
                 .timestamp(LocalDateTime.now())
@@ -24,11 +24,11 @@ public class ApiExceptionHandler {
                 .detail(exception.getMessage())
                 .developerMessage(exception.getClass().getName())
                 .build();
-        return new ResponseEntity <>(error, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(BadRequestException.class)
-    public ResponseEntity <?> handleBadRequestException(BadRequestException exception){
+    public ResponseEntity<?> handleBadRequestException(BadRequestException exception) {
         var error = StandardError
                 .builder()
                 .timestamp(LocalDateTime.now())
@@ -37,11 +37,11 @@ public class ApiExceptionHandler {
                 .detail(exception.getMessage())
                 .developerMessage(exception.getClass().getName())
                 .build();
-        return new ResponseEntity <>(error, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<?> validateField(MethodArgumentNotValidException e){
+    public ResponseEntity<?> validateField(MethodArgumentNotValidException e) {
         var error = StandardError
                 .builder()
                 .timestamp(LocalDateTime.now())
@@ -50,7 +50,7 @@ public class ApiExceptionHandler {
                 .detail(e.getAllErrors().get(0).getDefaultMessage())
                 .developerMessage(e.getClass().getName())
                 .build();
-        return new ResponseEntity <>(error, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 }
 

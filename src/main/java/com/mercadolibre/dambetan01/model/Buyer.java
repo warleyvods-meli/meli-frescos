@@ -18,5 +18,6 @@ public class Buyer {
     private Long id;
 
     @Embedded
-    User personalData;
+    private User personalData;
+    
 }

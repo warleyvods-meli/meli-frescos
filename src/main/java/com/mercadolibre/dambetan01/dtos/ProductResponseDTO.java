@@ -11,7 +11,6 @@ import javax.persistence.*;
 @Data
 public class ProductResponseDTO {
 
-
     private String productName;
     private Double price;
     private StorageType category;
