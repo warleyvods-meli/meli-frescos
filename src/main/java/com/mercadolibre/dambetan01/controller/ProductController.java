@@ -27,7 +27,7 @@ public class ProductController {
         this.stockMapper = stockMapper;
     }
 
-    @GetMapping("/fresh-products-location/")
+    @GetMapping("/fresh-products/location/")
     @ResponseBody
     public ProductLocationResponseDTO getProductLocation(@RequestParam Long productId, @RequestParam(required = false) Long warehouseId,
                                                          @RequestParam(required = false) String orderBy){
