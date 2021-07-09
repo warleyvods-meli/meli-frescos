@@ -26,10 +26,9 @@ public class CustomUserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String login) {
         Account usuario = accountRepository.findByUsername(login)
-                .orElseThrow(() -> new UsernameNotFoundException("Usuario não encontrado!"));
+                .orElseThrow(() -> new UsernameNotFoundException("user not found!"));
 
         List<GrantedAuthority> authorityListAdmin = AuthorityUtils.createAuthorityList("ROLE_USER", "ROLE_ADMIN", "ROLE_BUYER", "ROLE_SELLER", "ROLE_AGENT");
-//        List<GrantedAuthority> authorityListUser = AuthorityUtils.createAuthorityList("ROLE_USER");
         List<GrantedAuthority> authorityListBuyer = AuthorityUtils.createAuthorityList("ROLE_BUYER");
         List<GrantedAuthority> authorityListSeller = AuthorityUtils.createAuthorityList("ROLE_SELLER");
         List<GrantedAuthority> authorityListAgent = AuthorityUtils.createAuthorityList("ROLE_AGENT");

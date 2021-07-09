@@ -11,4 +11,5 @@ public interface ISectionService {
     Section findById(Long id);
 
     List<Section> getAll();
+
 }

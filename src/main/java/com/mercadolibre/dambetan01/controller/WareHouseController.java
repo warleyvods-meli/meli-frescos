@@ -27,8 +27,8 @@ public class WareHouseController {
 
     @PostMapping("/fresh-products/inboundorder")
     @ResponseBody
-    public ResponseEntity <InboundOrderResponse> createInboundOrder(@RequestParam(value = "AgentId") int agentId,
-                                                                    @RequestBody InboundOrderRequest request) {
+    public ResponseEntity<InboundOrderResponse> createInboundOrder(@RequestParam(value = "AgentId") int agentId,
+                                                                   @RequestBody InboundOrderRequest request) {
 
         Agent agent = agentService.findById((long) agentId);
         var orderToCheck = inboundOrderMapper.requestToEntity(request);
@@ -41,9 +41,9 @@ public class WareHouseController {
     //TODO atualizar o lote
     @PutMapping("/fresh-products/inboundorder")
     @ResponseBody
-    public ResponseEntity <InboundOrderResponse> updateInboundOrder(@RequestParam(value = "OrderId") int orderId,
-                                                                    @RequestParam(value = "AgentId") int agentId,
-                                                                    @RequestBody InboundOrderRequest request) {
+    public ResponseEntity<InboundOrderResponse> updateInboundOrder(@RequestParam(value = "OrderId") int orderId,
+                                                                   @RequestParam(value = "AgentId") int agentId,
+                                                                   @RequestBody InboundOrderRequest request) {
         Agent agent = agentService.findById((long) agentId);
         var orderToCheck = inboundOrderMapper.requestToEntityForPut(request, orderId);
         orderToCheck.setAgent(agent);

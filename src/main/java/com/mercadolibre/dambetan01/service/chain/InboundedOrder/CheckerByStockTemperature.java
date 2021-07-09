@@ -5,7 +5,7 @@ import com.mercadolibre.dambetan01.model.InboundOrder;
 import com.mercadolibre.dambetan01.model.Section;
 import com.mercadolibre.dambetan01.model.Stock;
 
-public class CheckerByStockTemperature extends InboundOrderChecker{
+public class CheckerByStockTemperature extends InboundOrderChecker {
 
     public CheckerByStockTemperature(InboundOrderChecker nextChecker) {
         super(nextChecker);
@@ -21,10 +21,10 @@ public class CheckerByStockTemperature extends InboundOrderChecker{
     }
 
     private void checkTemperatureRange(Section section, Stock stock) {
-        var minRangeValue  = section.getSectionName().getPreviousStorage().getTemperature();
-        var maxRangeValue  = section.getSectionName().getNextStorage().getTemperature();
+        var minRangeValue = section.getSectionName().getPreviousStorage().getTemperature();
+        var maxRangeValue = section.getSectionName().getNextStorage().getTemperature();
         var temperatureToCheck = stock.getCurrentTemperature();
-        if (temperatureToCheck < minRangeValue || temperatureToCheck > maxRangeValue  ) {
+        if (temperatureToCheck < minRangeValue || temperatureToCheck > maxRangeValue) {
             throw new BadRequestException("stock " + stock.getBatchNumber() + " temperature does not match witch section temperature");
         }
     }

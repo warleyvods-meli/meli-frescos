@@ -8,12 +8,11 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import static com.mercadolibre.dambetan01.security.SecurityConstants.LOGAR;
+import static com.mercadolibre.dambetan01.security.SecurityConstants.LOGIN_URL;
 
 
 @EnableWebSecurity
@@ -23,6 +22,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final CustomUserDetailService customUserDetailService;
     private final AccountRepository accountRepository;
 
+    private static final String BUYER = "BUYER";
+    private static final String AGENT = "AGENT";
+    private static final String ADMIN = "ADMIN";
+    private static final String SELLER = "SELLER";
+
+
     public WebSecurityConfig(CustomUserDetailService customUserDetailService, AccountRepository accountRepository) {
         this.customUserDetailService = customUserDetailService;
         this.accountRepository = accountRepository;
@@ -30,29 +35,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests().antMatchers(HttpMethod.GET, LOGAR).permitAll()
+        http.cors().and().csrf().disable().authorizeRequests().antMatchers(HttpMethod.GET, LOGIN_URL).permitAll()
 
-                .antMatchers("/**/admin/**").hasRole("ADMIN")
-                .antMatchers("/**/SELLER/**").hasRole("SELLER")
+                .antMatchers("/**/admin/**").hasRole(ADMIN)
+                .antMatchers("/**/seller/**").hasRole(SELLER)
 
-                .antMatchers("/**/fresh-products/inboundorder/**").hasRole("AGENT")
-                .antMatchers("/**/fresh-products/location/").hasRole("AGENT")
-                .antMatchers("/**/fresh-products/due-date/**").hasRole("AGENT")
+                .antMatchers("/**/fresh-products/inboundorder/**").hasRole(AGENT)
+                .antMatchers("/**/fresh-products/location/").hasRole(AGENT)
+                .antMatchers("/**/fresh-products/due-date/**").hasRole(AGENT)
 
+                .antMatchers("/**/fresh-products").hasRole(BUYER)
+                .antMatchers("/**/fresh-products/orders").hasRole(BUYER)
+                .antMatchers("/**/fresh-products/orders/find").hasRole(BUYER)
+                .antMatchers("/**/fresh-products/list").hasRole(BUYER)
 
-                .antMatchers("/**/fresh-products").hasRole("BUYER")
-                .antMatchers("/**/fresh-products/orders").hasRole("BUYER")
-                .antMatchers("/**/fresh-products/orders/find").hasRole("BUYER")
-                .antMatchers("/**/fresh-products/list").hasRole("BUYER")
-//                .antMatchers("/**/admin/**").permitAll()
-//                .antMatchers("/**/agent/**").permitAll()
-//                .antMatchers("/**/seller/**").permitAll()
-//                .antMatchers("/**/buyer/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/ping").permitAll()
                 .antMatchers(HttpMethod.GET, "/v3/api-docs").permitAll()
                 .antMatchers(HttpMethod.GET, "/fake").permitAll()
                 .antMatchers("/*/actuator/**").permitAll()
-                //.anyRequest().permitAll()
+
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager(), accountRepository))

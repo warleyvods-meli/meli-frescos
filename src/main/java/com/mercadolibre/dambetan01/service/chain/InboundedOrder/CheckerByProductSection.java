@@ -7,7 +7,7 @@ import com.mercadolibre.dambetan01.model.Product;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CheckerByProductSection extends InboundOrderChecker{
+public class CheckerByProductSection extends InboundOrderChecker {
 
     public CheckerByProductSection(InboundOrderChecker nextChecker) {
         super(nextChecker);
@@ -18,7 +18,7 @@ public class CheckerByProductSection extends InboundOrderChecker{
      */
     @Override
     public boolean verify(InboundOrder order) {
-        List <Product> products = new ArrayList <>();
+        List<Product> products = new ArrayList<>();
         order.getBatchStock().forEach(stock -> products.add(stock.getProduct()));
         var notMatchProducts = products
                 .stream()

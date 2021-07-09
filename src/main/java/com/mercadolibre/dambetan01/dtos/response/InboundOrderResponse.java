@@ -13,5 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class InboundOrderResponse {
+
     List <StockRequest> batchStock;
+
 }

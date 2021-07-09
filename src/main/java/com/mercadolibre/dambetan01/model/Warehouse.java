@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name="warehouse")
+@Table(name = "warehouse")
 public class Warehouse {
 
     @Id
@@ -25,10 +25,5 @@ public class Warehouse {
 
     @OneToMany(mappedBy = "warehouse")
     private List<Agent> agents;
-
-
-
-
-
 
 }

@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 public class SectionRequest {
 
     private int sectionId;
-
     private int warehouseId;
+
 }

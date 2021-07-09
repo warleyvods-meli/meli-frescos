@@ -1,8 +1,8 @@
 package com.mercadolibre.dambetan01.service;
 
 
-import com.mercadolibre.dambetan01.dtos.response.ProductLocationResponseDTO;
 import com.mercadolibre.dambetan01.dtos.ProductResponseDTO;
+import com.mercadolibre.dambetan01.dtos.response.ProductLocationResponseDTO;
 import com.mercadolibre.dambetan01.enums.StorageType;
 import com.mercadolibre.dambetan01.model.Product;
 

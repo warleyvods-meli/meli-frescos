@@ -2,7 +2,7 @@ package com.mercadolibre.dambetan01.service.chain.InboundedOrder;
 
 import com.mercadolibre.dambetan01.model.InboundOrder;
 
-public class CheckerFinalyze extends InboundOrderChecker{
+public class CheckerFinalyze extends InboundOrderChecker {
 
     public CheckerFinalyze() {
         super(null);
