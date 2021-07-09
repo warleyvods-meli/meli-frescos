@@ -1,5 +1,6 @@
 package com.mercadolibre.dambetan01.controller;
 
+import com.mercadolibre.dambetan01.dtos.request.InboundOrderPutRequest;
 import com.mercadolibre.dambetan01.dtos.request.InboundOrderRequest;
 import com.mercadolibre.dambetan01.dtos.response.InboundOrderResponse;
 import com.mercadolibre.dambetan01.mapper.InboundOrderMapper;
@@ -43,7 +44,7 @@ public class WareHouseController {
     @ResponseBody
     public ResponseEntity<InboundOrderResponse> updateInboundOrder(@RequestParam(value = "OrderId") int orderId,
                                                                    @RequestParam(value = "AgentId") int agentId,
-                                                                   @RequestBody InboundOrderRequest request) {
+                                                                   @RequestBody InboundOrderPutRequest request) {
         Agent agent = agentService.findById((long) agentId);
         var orderToCheck = inboundOrderMapper.requestToEntityForPut(request, orderId);
         orderToCheck.setAgent(agent);
