@@ -1,5 +1,6 @@
 package com.mercadolibre.dambetan01.mapper;
 
+import com.mercadolibre.dambetan01.dtos.request.InboundOrderPutRequest;
 import com.mercadolibre.dambetan01.dtos.request.InboundOrderRequest;
 import com.mercadolibre.dambetan01.dtos.request.SectionRequest;
 import com.mercadolibre.dambetan01.dtos.request.StockRequest;
@@ -85,14 +86,43 @@ public class InboundOrderMapper {
         return InboundOrderResponse.builder().batchStock(stockRequestList).build();
     }
 
-    public InboundOrder requestToEntityForPut(InboundOrderRequest request, int orderId) {
+    public InboundOrder requestToEntityForPut(InboundOrderPutRequest request, int orderId) {
         var savedOrder = inboundOrderService.findById((long)orderId);
-        var newOrder = requestToEntity(request);
+        var newOrder = putRequestToEntity(request);
         savedOrder.setOrderDate(newOrder.getOrderDate());
         savedOrder.setOrderNumber(newOrder.getOrderNumber());
         savedOrder.setSection(newOrder.getSection());
         savedOrder.setBatchStock(newOrder.getBatchStock());
-        //TODO avaliar para cada item da lista
         return savedOrder;
+    }
+
+    private InboundOrder putRequestToEntity(InboundOrderPutRequest request) {
+        return InboundOrder.builder()
+                .orderDate(request.getOrderDate())
+                .section(this.sectionRequestToSection(request.getSection()))
+                .batchStock(this.batchStockPutRequestToBatchStock(request))
+                .orderNumber(request.getOrderNumber())
+                .build();
+    }
+
+    private List<Stock> batchStockPutRequestToBatchStock(InboundOrderPutRequest request) {
+        List<Stock> stockList = new ArrayList <>();
+        request.getBatchStock().forEach(bsr -> stockList.add(Stock.builder()
+                .id((long) bsr.getId())
+                .currentTemperature(bsr.getCurrentTemperature())
+                .dueDate(bsr.getDueDate())
+                .manufacturingDate(bsr.getManufacturingDate())
+                .minimumTemperature(bsr.getMinimumTemperature())
+                .currentQuantity(bsr.getCurrentQuantity())
+                .initialQuantity(bsr.getInitialQuantity())
+                .product(productServiceService.findById((long) bsr.getProductId()))
+                .manufacturingTime(bsr.getManufacturingTime())
+                .orderNumber(bsr.getOrderNumber())
+                .batchNumber(bsr.getBatchNumber())
+                .section(this.sectionRequestToSection(request.getSection()))
+                .build()
+        ));
+
+        return stockList;
     }
 }
