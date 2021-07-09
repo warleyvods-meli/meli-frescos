@@ -48,7 +48,7 @@ public class PurchaseOrderController {
     }
 
     @PutMapping("/fresh-products/orders")
-    public ResponseEntity<PurchaseOrderResponseDTO> editOrder(@RequestBody @Valid PurchaseOrderRequestDTO purchaseOrderRequestDTO) {
+    public ResponseEntity<PurchaseOrderResponseDTO> editOrder(@RequestBody PurchaseOrderRequestDTO purchaseOrderRequestDTO) {
         return new ResponseEntity<>(purchaseOrderService.editOrder(purchaseOrderRequestDTO), HttpStatus.OK);
     }
 
